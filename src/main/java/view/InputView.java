@@ -7,9 +7,10 @@ public class InputView {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static int inputTableNumber() {
+    public static int requestOrderTableNumber() {
         System.out.println();
-        System.out.println("## 주문할 테이블을 선택하세요.");
+        System.out.printf(Message.INFO_MESSAGE_FORM, Message.SELECT_TABLE);
+        System.out.println();
         return scanner.nextInt();
     }
 

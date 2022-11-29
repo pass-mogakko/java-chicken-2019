@@ -3,6 +3,7 @@ package controller;
 import domain.Table;
 import domain.TableRepository;
 import java.util.List;
+import view.InputView;
 import view.OutputView;
 
 public class OrderController {
@@ -20,6 +21,7 @@ public class OrderController {
     public static void run() {
         List<Table> tables = TableRepository.tables();
         OutputView.printTables(tables);
+        int orderTableNumber = InputView.requestOrderTableNumber();
     }
 
 }
