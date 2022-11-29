@@ -8,12 +8,14 @@ import java.util.List;
 
 public class Controller {
     private final List<Table> tables;
+    private final List<Menu> menus;
 
     private final TypeConverter converter = new TypeConverter();
     private final Validator validator = new Validator();
 
     public Controller() {
         this.tables = TableRepository.tables();
+        this.menus =  MenuRepository.menus();
     }
 
     public void run() {
@@ -21,11 +23,9 @@ public class Controller {
         if (command == 1) {
             OutputView.printTables(tables);
             int tableNumber = getInputTableNumber();
+            OutputView.printMenus(menus);
             getInputMenuNumber();
         }
-
-        final List<Menu> menus = MenuRepository.menus();
-        OutputView.printMenus(menus);
     }
 
     private int getInputCommand() {
