@@ -1,17 +1,17 @@
 package controller;
 
+import domain.Menu;
+import domain.MenuRepository;
 import domain.Table;
 import domain.TableRepository;
 import domain.TablesNumber;
 import java.util.List;
-import service.OrderService;
 import view.InputView;
 import view.OutputView;
 
 public class OrderController {
 
     private static final OrderController orderController = new OrderController();
-    private static final OrderService orderService = OrderService.getInstance();
 
     private OrderController() {
 
@@ -22,6 +22,12 @@ public class OrderController {
     }
 
     public static void run() {
+        int orderTableNumber = requestOrderTableNumber();
+        int registerMenuNumber = requestRegisterMenu();
+
+    }
+
+    private static int requestOrderTableNumber() {
         List<Table> tables = TableRepository.tables();
         OutputView.printTables(tables);
         int orderTableNumber = InputView.requestOrderTableNumber();
@@ -29,9 +35,16 @@ public class OrderController {
             TablesNumber.validate(orderTableNumber);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
-            run();
+            requestOrderTableNumber();
         }
+        return orderTableNumber;
+    }
 
+    private static int requestRegisterMenu() {
+        List<Menu> menus = MenuRepository.menus();
+        OutputView.printMenus(menus);
+
+        return 0;
     }
 
 }
