@@ -19,7 +19,6 @@ public class Controller {
     public void run() {
         int command = getInputCommand();
 
-
         OutputView.printTables(tables);
         final int tableNumber = InputView.inputTableNumber();
 
@@ -28,9 +27,14 @@ public class Controller {
     }
 
     private int getInputCommand() {
-        String input = InputView.inputCommand();
-        int command = converter.convertStringToInt(input);
-        validator.validateCommandRange(command);
-        return command;
+        while (true) {
+            try {
+                String input = InputView.inputCommand();
+                return validator.validateInputCommand(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
+
 }
