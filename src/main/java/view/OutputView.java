@@ -1,5 +1,6 @@
 package view;
 
+import constant.ErrorMessage;
 import constant.Message;
 import domain.MainScreenSelection;
 import domain.Menu;
@@ -41,11 +42,18 @@ public class OutputView {
     }
 
     public static void printMainScreen(final List<MainScreenSelection> mainScreenSelections) {
+        System.out.println();
         System.out.printf(Message.INFO_MESSAGE_FORM, Message.MAIN_SCREEN);
         System.out.println();
         for (final MainScreenSelection selection : mainScreenSelections) {
             System.out.printf(Message.SELECT_MESSAGE_FORM, selection.getSelection(), selection.getKorean());
             System.out.println();
         }
+    }
+
+    public static void printErrorMessage(String message) {
+        System.out.println();
+        System.out.printf(ErrorMessage.ERROR_MESSAGE_FORM, message);
+        System.out.println();
     }
 }
