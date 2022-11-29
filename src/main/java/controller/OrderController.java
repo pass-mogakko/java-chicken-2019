@@ -43,8 +43,14 @@ public class OrderController {
     private static int requestRegisterMenu() {
         List<Menu> menus = MenuRepository.menus();
         OutputView.printMenus(menus);
-
+        int registerMenu = InputView.requestRegisterMenu();
+        //        try {
+        //            MenuNumber.validate(registerMenu);
+        //        } catch (IllegalArgumentException e) {
+        //            OutputView.printErrorMessage(e.getMessage());
+        //            requestRegisterMenu();
+        //        }
+        //        return registerMenu;
         return 0;
     }
-
 }

@@ -20,4 +20,11 @@ public class InputView {
         System.out.println();
         return scanner.nextInt();
     }
+
+    public static int requestRegisterMenu() {
+        System.out.println();
+        System.out.printf(Message.INFO_MESSAGE_FORM, Message.REQUEST_REGISTER_MENU);
+        System.out.println();
+        return scanner.nextInt();
+    }
 }
