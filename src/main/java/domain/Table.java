@@ -7,6 +7,13 @@ public class Table {
         this.number = number;
     }
 
+    public boolean isPresentNumber(int tableNumber) {
+        if (this.number == tableNumber) {
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public String toString() {
         return Integer.toString(number);

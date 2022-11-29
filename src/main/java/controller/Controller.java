@@ -10,7 +10,6 @@ public class Controller {
     private final List<Table> tables;
     private final List<Menu> menus;
 
-    private final TypeConverter converter = new TypeConverter();
     private final Validator validator = new Validator();
 
     public Controller() {
@@ -32,6 +31,7 @@ public class Controller {
     private void order() {
         OutputView.printTables(tables);
         int tableNumber = getInputTableNumberToOrder();
+        TableRepository.updateTable(tableNumber);
         OutputView.printMenus(menus);
         int menuNumber = getInputMenuNumber();
         int menuCount = getInputMenuCount();
