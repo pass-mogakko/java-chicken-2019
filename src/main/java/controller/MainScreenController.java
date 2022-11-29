@@ -3,6 +3,7 @@ package controller;
 import domain.Table;
 import domain.TableRepository;
 import java.util.List;
+import view.InputView;
 import view.OutputView;
 
 public class MainScreenController {
@@ -20,8 +21,7 @@ public class MainScreenController {
     public void run() {
         final List<Table> tables = TableRepository.tables();
         OutputView.printTables(tables);
-
-        //        final int tableNumber = InputView.inputTableNumber();
+        final int tableNumber = InputView.inputTableNumber();
         //
         //        final List<Menu> menus = MenuRepository.menus();
         //        OutputView.printMenus(menus);
