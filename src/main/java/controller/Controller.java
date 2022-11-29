@@ -1,9 +1,6 @@
 package controller;
 
-import domain.Menu;
-import domain.MenuRepository;
-import domain.Table;
-import domain.TableRepository;
+import domain.*;
 import view.InputView;
 import view.OutputView;
 
@@ -17,6 +14,8 @@ public class Controller {
     }
 
     public void run() {
+        String input = InputView.inputCommand();
+
         OutputView.printTables(tables);
         final int tableNumber = InputView.inputTableNumber();
 
