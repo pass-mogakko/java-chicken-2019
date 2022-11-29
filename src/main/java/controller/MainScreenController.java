@@ -1,14 +1,14 @@
 package controller;
 
-import domain.Table;
-import domain.TableRepository;
+import domain.MainScreenSelection;
 import java.util.List;
-import view.InputView;
+import service.MainScreenService;
 import view.OutputView;
 
 public class MainScreenController {
 
     private static final MainScreenController mainController = new MainScreenController();
+    private static final MainScreenService mainScreenService = MainScreenService.getInstance();
 
     private MainScreenController() {
 
@@ -19,11 +19,14 @@ public class MainScreenController {
     }
 
     public void run() {
-        final List<Table> tables = TableRepository.tables();
-        OutputView.printTables(tables);
-        final int tableNumber = InputView.inputTableNumber();
-        //
-        //        final List<Menu> menus = MenuRepository.menus();
-        //        OutputView.printMenus(menus);
+        List<MainScreenSelection> allMainScreenSelection = MainScreenSelection.findAllMainScreenSelection();
+        OutputView.printMainScreen(allMainScreenSelection);
+        //        final int tableNumber = InputView.inputTableNumber();
+        //        try {
+        //            MainScreenSelection.validateInput(tableNumber);
+        //        } catch (IllegalArgumentException e) {
+        //            System.out.printf(ErrorMessage.ERROR_MESSAGE_FORM, e.getMessage());
+        //            run();
+        //        }
     }
 }

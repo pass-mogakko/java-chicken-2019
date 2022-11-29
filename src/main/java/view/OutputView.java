@@ -1,5 +1,7 @@
 package view;
 
+import constant.Message;
+import domain.MainScreenSelection;
 import domain.Menu;
 import domain.Table;
 import java.util.List;
@@ -36,5 +38,14 @@ public class OutputView {
             System.out.printf(TABLE_FORMAT, table);
         }
         System.out.println();
+    }
+
+    public static void printMainScreen(final List<MainScreenSelection> mainScreenSelections) {
+        System.out.printf(Message.INFO_MESSAGE_FORM, Message.MAIN_SCREEN);
+        System.out.println();
+        for (final MainScreenSelection selection : mainScreenSelections) {
+            System.out.printf(Message.SELECT_MESSAGE_FORM, selection.getSelection(), selection.getKorean());
+            System.out.println();
+        }
     }
 }
