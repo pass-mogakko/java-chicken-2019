@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.List;
+
 import static domain.ErrorCode.*;
 
 public class Validator {
@@ -12,9 +14,15 @@ public class Validator {
     }
 
     public int validateTableNumber(String input) {
-        int command = converter.convertStringToInt(input);
-        checkTableNumberRange(command);
-        return command;
+        int tableNumber = converter.convertStringToInt(input);
+        checkTableNumberRange(tableNumber);
+        return tableNumber;
+    }
+
+    public int validateMenuNumber(String input) {
+        int menuNumber = converter.convertStringToInt(input);
+        checkMenuNumberRange(menuNumber);
+        return menuNumber;
     }
 
     private void checkCommandRange(int command) {
@@ -26,6 +34,12 @@ public class Validator {
     private void checkTableNumberRange(int tableNumber) {
         if (tableNumber < 1 || tableNumber > 8) {
             throw new IllegalArgumentException(INVALID_TABLE_NUMBER_RANGE.getMessage());
+        }
+    }
+
+    private void checkMenuNumberRange(int menuNumber) {
+        if (!List.of(1, 2, 3, 4, 5, 6, 21, 22).contains(menuNumber)) {
+            throw new IllegalArgumentException(INVALID_MENU_NUMBER_RANGE.getMessage());
         }
     }
 

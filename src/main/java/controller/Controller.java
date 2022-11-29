@@ -24,7 +24,7 @@ public class Controller {
             OutputView.printTables(tables);
             int tableNumber = getInputTableNumber();
             OutputView.printMenus(menus);
-            getInputMenuNumber();
+            int menuNumber = getInputMenuNumber();
         }
     }
 
@@ -50,9 +50,16 @@ public class Controller {
         }
     }
 
-    private String getInputMenuNumber() {
-        String input = InputView.inputMenuNumber();
-        return input;
+    private int getInputMenuNumber() {
+        while(true) {
+            try {
+                String input = InputView.inputMenuNumber();
+                return validator.validateMenuNumber(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
     }
 
 }
