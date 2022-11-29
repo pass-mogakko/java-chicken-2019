@@ -42,6 +42,7 @@ public class Controller {
         int menuNumber = getInputMenuNumber();
         int menuCount = getInputMenuCount();
         OrderService.createOrder(tableNumber, menuNumber, menuCount);
+        OutputView.printOrderCompleteMessage();
     }
 
     private void makePayment() {

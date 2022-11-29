@@ -11,6 +11,7 @@ public class OutputView {
     private static final String TABLE_FORMAT = "| %s |";
     private static final String BOTTOM_LINE = "└ ─ ┘";
     private static final String MENU_INFO_MESSAGE = "## 메뉴 목록";
+    private static final String ORDER_COMPLETE_MESSAGE = "주문이 완료되었습니다. 메인 페이지로 돌아갑니다.";
 
     public static void printTables(final List<Table> tables) {
         System.out.println();
@@ -40,6 +41,12 @@ public class OutputView {
         for (final Table table : tables) {
             System.out.printf(TABLE_FORMAT, table);
         }
+        System.out.println();
+    }
+
+    public static void printOrderCompleteMessage() {
+        System.out.println();
+        System.out.println(ORDER_COMPLETE_MESSAGE);        System.out.println();
         System.out.println();
     }
 }
