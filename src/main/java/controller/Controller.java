@@ -21,6 +21,7 @@ public class Controller {
         if (command == 1) {
             OutputView.printTables(tables);
             int tableNumber = getInputTableNumber();
+            getInputMenuNumber();
         }
 
         final List<Menu> menus = MenuRepository.menus();
@@ -47,6 +48,11 @@ public class Controller {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private String getInputMenuNumber() {
+        String input = InputView.inputMenuNumber();
+        return input;
     }
 
 }
