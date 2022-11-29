@@ -28,6 +28,7 @@ public class OrderController {
         int registerMenuNumber = requestRegisterMenu();
         int menuQuantity = requestMenuQuantity();
 
+        orderMenu(orderTableNumber, registerMenuNumber, menuQuantity);
     }
 
     private static int requestOrderTableNumber() {
@@ -65,5 +66,12 @@ public class OrderController {
             requestMenuQuantity();
         }
         return quantity;
+    }
+
+    private static void orderMenu(int orderTableNumber, int registerMenuNumber, int menuQuantity) {
+        Menu menu = MenuRepository.findMenuByNumber(registerMenuNumber);
+        int price = menu.computePrice(menuQuantity);
+
+        TableRepository.menuOrder(orderTableNumber, price);
     }
 }
