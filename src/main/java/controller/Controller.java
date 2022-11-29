@@ -21,11 +21,16 @@ public class Controller {
     public void run() {
         int command = getInputCommand();
         if (command == 1) {
-            OutputView.printTables(tables);
-            int tableNumber = getInputTableNumber();
-            OutputView.printMenus(menus);
-            int menuNumber = getInputMenuNumber();
+            order();
         }
+    }
+
+    private void order() {
+        OutputView.printTables(tables);
+        int tableNumber = getInputTableNumber();
+        OutputView.printMenus(menus);
+        int menuNumber = getInputMenuNumber();
+        getInputMenuCount();
     }
 
     private int getInputCommand() {
@@ -60,6 +65,17 @@ public class Controller {
             }
         }
 
+    }
+
+    private String getInputMenuCount() {
+        while(true) {
+            try {
+                String input = InputView.inputMenuCount();
+                return input;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
 }
