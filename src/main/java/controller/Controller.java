@@ -20,17 +20,27 @@ public class Controller {
 
     public void run() {
         int command = getInputCommand();
-        if (command == 1) {
-            order();
+        while (command != 3) {
+            if (command == 1)
+                order();
+            if (command == 2)
+                makePayment();
+            command = getInputCommand();
         }
     }
 
     private void order() {
         OutputView.printTables(tables);
-        int tableNumber = getInputTableNumber();
+        int tableNumber = getInputTableNumberToOrder();
         OutputView.printMenus(menus);
         int menuNumber = getInputMenuNumber();
         int menuCount = getInputMenuCount();
+    }
+
+    private void makePayment() {
+        OutputView.printTables(tables);
+        int tableNumber = getInputTableNumberToPay();
+        // 주문한 테이블인지 확인하기
     }
 
     private int getInputCommand() {
@@ -44,10 +54,10 @@ public class Controller {
         }
     }
 
-    private int getInputTableNumber() {
+    private int getInputTableNumberToOrder() {
         while (true) {
             try {
-                String input = InputView.inputTableNumber();
+                String input = InputView.inputTableNumberToOrder();
                 return validator.validateTableNumber(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -72,6 +82,17 @@ public class Controller {
             try {
                 String input = InputView.inputMenuCount();
                 return validator.validateMenuCount(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private int getInputTableNumberToPay() {
+        while (true) {
+            try {
+                String input = InputView.inputTableNumberToPay();
+                return validator.validateTableNumber(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
