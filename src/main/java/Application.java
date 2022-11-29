@@ -7,15 +7,32 @@ import view.OutputView;
 
 import java.util.List;
 
-public class Application {
-    // TODO 구현 진행
-    public static void main(String[] args) {
-        final List<Table> tables = TableRepository.tables();
-        OutputView.printTables(tables);
+import static view.InputView.inputCommand;
 
+
+public class Application {
+    static final List<Table> tables = TableRepository.tables();
+    static final List<Menu> menus = MenuRepository.menus();
+
+    public static void main(String[] args) {
         final int tableNumber = InputView.inputTableNumber();
 
-        final List<Menu> menus = MenuRepository.menus();
+
         OutputView.printMenus(menus);
+    }
+
+    private void printInitSetting() {
+        readCommand();
+        OutputView.printTables(tables);
+    }
+
+    private int readCommand() {
+        OutputView.printMainView();
+        try {
+            return inputCommand();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readCommand();
+        }
     }
 }
