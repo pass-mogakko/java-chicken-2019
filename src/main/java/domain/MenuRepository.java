@@ -1,10 +1,12 @@
 package domain;
 
+import constant.ErrorMessage;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class MenuRepository {
+
     private static final List<Menu> menus = new ArrayList<>();
 
     static {
@@ -20,5 +22,12 @@ public class MenuRepository {
 
     public static List<Menu> menus() {
         return Collections.unmodifiableList(menus);
+    }
+
+    public static Menu findMenuByNumber(int menuNumber) {
+        return menus.stream()
+                .filter(table -> table.isSameNumber(menuNumber))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.NOT_EXIST_MENU));
     }
 }
