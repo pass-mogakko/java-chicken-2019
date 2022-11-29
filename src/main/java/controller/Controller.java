@@ -3,10 +3,10 @@ package controller;
 import domain.*;
 import domain.menu.Menu;
 import domain.menu.MenuRepository;
-import domain.order.OrderRepository;
 import domain.order.OrderService;
 import domain.table.Table;
 import domain.table.TableRepository;
+import domain.table.TableService;
 import view.InputView;
 import view.OutputView;
 
@@ -27,17 +27,17 @@ public class Controller {
         int command = getInputCommand();
         while (command != 3) {
             if (command == 1)
-                order();
+                makeOrder();
             if (command == 2)
                 makePayment();
             command = getInputCommand();
         }
     }
 
-    private void order() {
+    private void makeOrder() {
         OutputView.printTables(tables);
         int tableNumber = getInputTableNumberToOrder();
-        TableRepository.updateTable(tableNumber);
+        TableService.updateTable(tableNumber);
         OutputView.printMenus(menus);
         int menuNumber = getInputMenuNumber();
         int menuCount = getInputMenuCount();

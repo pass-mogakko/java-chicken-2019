@@ -20,13 +20,8 @@ public class TableRepository {
         return Collections.unmodifiableList(tables);
     }
 
-    public static void updateTable(int tableNumber) {
-        for (Table table : tables) {
-            if (table.isPresentNumber(tableNumber)) {
-                return;
-            }
-        }
-        tables.add(new Table(tableNumber));
+    public static void save(Table table) {
+        tables.add(table);
     }
 
     public static Table findByNumber(int tableNumber) {
