@@ -18,9 +18,7 @@ public class Controller {
 
     public void run() {
         int command = getInputCommand();
-
-        OutputView.printTables(tables);
-        final int tableNumber = InputView.inputTableNumber();
+        String tableNumber = getInputTableNumber();
 
         final List<Menu> menus = MenuRepository.menus();
         OutputView.printMenus(menus);
@@ -35,6 +33,12 @@ public class Controller {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private String getInputTableNumber() {
+        OutputView.printTables(tables);
+        String input = InputView.inputTableNumber();
+        return input;
     }
 
 }
