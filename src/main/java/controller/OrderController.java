@@ -13,22 +13,13 @@ import view.OutputView;
 
 public class OrderController {
 
-    private static final OrderController orderController = new OrderController();
-
-    private OrderController() {
-
-    }
-
-    public static OrderController getInstance() {
-        return orderController;
-    }
-
     public static void run() {
         int orderTableNumber = requestOrderTableNumber();
         int registerMenuNumber = requestRegisterMenu();
         int menuQuantity = requestMenuQuantity();
 
         orderMenu(orderTableNumber, registerMenuNumber, menuQuantity);
+        MainScreenController.run();
     }
 
     private static int requestOrderTableNumber() {

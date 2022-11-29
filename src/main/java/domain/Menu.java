@@ -24,6 +24,6 @@ public class Menu {
     }
 
     public int computePrice(int quantity) {
-        return price*quantity;
+        return price * quantity;
     }
 }
