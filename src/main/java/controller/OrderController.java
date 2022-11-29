@@ -1,6 +1,7 @@
 package controller;
 
 import domain.Menu;
+import domain.MenuNumber;
 import domain.MenuRepository;
 import domain.Table;
 import domain.TableRepository;
@@ -44,13 +45,12 @@ public class OrderController {
         List<Menu> menus = MenuRepository.menus();
         OutputView.printMenus(menus);
         int registerMenu = InputView.requestRegisterMenu();
-        //        try {
-        //            MenuNumber.validate(registerMenu);
-        //        } catch (IllegalArgumentException e) {
-        //            OutputView.printErrorMessage(e.getMessage());
-        //            requestRegisterMenu();
-        //        }
-        //        return registerMenu;
-        return 0;
+        try {
+            MenuNumber.validate(registerMenu);
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            requestRegisterMenu();
+        }
+        return registerMenu;
     }
 }
