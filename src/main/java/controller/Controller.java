@@ -30,7 +30,7 @@ public class Controller {
         int tableNumber = getInputTableNumber();
         OutputView.printMenus(menus);
         int menuNumber = getInputMenuNumber();
-        getInputMenuCount();
+        int menuCount = getInputMenuCount();
     }
 
     private int getInputCommand() {
@@ -67,11 +67,11 @@ public class Controller {
 
     }
 
-    private String getInputMenuCount() {
+    private int getInputMenuCount() {
         while(true) {
             try {
                 String input = InputView.inputMenuCount();
-                return input;
+                return validator.validateMenuCount(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

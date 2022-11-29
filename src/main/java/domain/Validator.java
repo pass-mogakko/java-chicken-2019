@@ -25,6 +25,12 @@ public class Validator {
         return menuNumber;
     }
 
+    public int validateMenuCount(String input) {
+        int menuCount = converter.convertStringToInt(input);
+        checkMenuCountRange(menuCount);
+        return menuCount;
+    }
+
     private void checkCommandRange(int command) {
         if (command < 1 || command > 3) {
             throw new IllegalArgumentException(INVALID_COMMAND_RANGE.getMessage());
@@ -40,6 +46,15 @@ public class Validator {
     private void checkMenuNumberRange(int menuNumber) {
         if (!List.of(1, 2, 3, 4, 5, 6, 21, 22).contains(menuNumber)) {
             throw new IllegalArgumentException(INVALID_MENU_NUMBER_RANGE.getMessage());
+        }
+    }
+
+    private void checkMenuCountRange(int menuCount) {
+        if (menuCount > 99) {
+            throw new IllegalArgumentException(INVALID_MENU_COUNT_RANGE_TOP.getMessage());
+        }
+        if (menuCount < 1) {
+            throw new IllegalArgumentException(INVALID_MENU_COUNT_RANGE_BOTTOM.getMessage());
         }
     }
 
