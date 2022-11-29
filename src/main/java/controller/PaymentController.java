@@ -11,10 +11,13 @@ public class PaymentController {
 
     public static void run() {
         int paymentTableNumber = requestPaymentTableNumber();
+        boolean isEmptyTable = validateIsEmptyTable(paymentTableNumber);
+        if (isEmptyTable) {
+            return ;
+        }
         requestPaymentMethod(paymentTableNumber);
 
     }
-
 
     private static int requestPaymentTableNumber() {
         List<Table> tables = TableRepository.tables();
@@ -29,13 +32,20 @@ public class PaymentController {
         }
     }
 
-    private static void requestPaymentMethod(int paymentTableNumber) {
+    private static boolean validateIsEmptyTable(int paymentTableNumber) {
         try {
             TableRepository.validateEmptyTable(paymentTableNumber);
+            return false;
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             MainScreenController.run();
-            return;
+            return true;
         }
+    }
+
+
+    private static void requestPaymentMethod(int paymentTableNumber) {
+        Table table = TableRepository.findTableByNumber(paymentTableNumber);
+        OutputView.printOrderHistory(table);
     }
 }

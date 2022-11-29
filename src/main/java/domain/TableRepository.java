@@ -27,7 +27,7 @@ public class TableRepository {
         table.menuOrder(menu, orderQuantity);
     }
 
-    private static Table findTableByNumber(int tableNumber) {
+    public static Table findTableByNumber(int tableNumber) {
         return tables.stream()
                 .filter(table -> table.isSameNumber(tableNumber))
                 .findAny()

@@ -58,4 +58,12 @@ public class OutputView {
         System.out.printf(ErrorMessage.ERROR_MESSAGE_FORM, message);
         System.out.println();
     }
+
+    public static void printOrderHistory(Table table) {
+        System.out.println();
+        System.out.printf(Message.INFO_MESSAGE_FORM, Message.ORDER_HISTORY);
+        System.out.println();
+        System.out.println(Message.ORDER_HISTORY_TOP_BAR);
+        System.out.println(table.menuHistory());
+    }
 }

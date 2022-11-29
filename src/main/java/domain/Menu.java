@@ -26,4 +26,13 @@ public class Menu {
     //    public int computePrice(int quantity) {
     //        return price * quantity;
     //    }
+
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPrice() {
+        return price;
+    }
 }
