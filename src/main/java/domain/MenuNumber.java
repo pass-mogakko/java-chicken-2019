@@ -21,7 +21,7 @@ public enum MenuNumber {
 
     public static void validate(int number) {
         Arrays.stream(MenuNumber.values())
-                .filter(MenuNumber -> MenuNumber.number == number)
+                .filter(menuNumber -> menuNumber.number == number)
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.NOT_EXIST_MENU));
     }

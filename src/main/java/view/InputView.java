@@ -41,6 +41,7 @@ public class InputView {
         System.out.printf(Message.INFO_MESSAGE_FORM, proceedToPayment);
         System.out.println();
         System.out.printf(Message.INFO_MESSAGE_FORM, Message.PAYMENT_METHOD);
+        System.out.println();
         return scanner.nextInt();
     }
 }
