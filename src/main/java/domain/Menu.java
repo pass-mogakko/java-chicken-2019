@@ -13,6 +13,18 @@ public class Menu {
         this.price = price;
     }
 
+    private void validateMenu(){
+
+    }
+
+    public int getPrice(){
+        return price;
+    }
+
+    public int getNumber(){
+        return number;
+    }
+
     @Override
     public String toString() {
         return category + " " + number + " - " + name + " : " + price + "원";

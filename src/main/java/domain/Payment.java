@@ -13,6 +13,10 @@ public class Payment {
         payment += price;
     }
 
+    public Table getTable(){
+        return this.table;
+    }
+
     public int getPayment(){
         return this.payment;
     }

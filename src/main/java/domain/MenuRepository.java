@@ -21,4 +21,10 @@ public class MenuRepository {
     public static List<Menu> menus() {
         return Collections.unmodifiableList(menus);
     }
+
+    public static int getPrice(final int number){
+        Menu inputMenu = (Menu) menus.stream()
+                .filter(menu -> menu.getNumber() == number);
+        return inputMenu.getPrice();
+    }
 }

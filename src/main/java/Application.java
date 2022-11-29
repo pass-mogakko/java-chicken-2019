@@ -4,33 +4,38 @@ import view.OutputView;
 
 import java.util.List;
 
-import static domain.Command.isExitCommand;
 import static domain.Command.readInputCommand;
 
 
 public class Application {
     static final List<Table> tables = TableRepository.tables();
     static final List<Menu> menus = MenuRepository.menus();
-    static final List<Payment> payments = PaymentRepository.payments();
 
     public static void main(String[] args) {
         int command = readCommand();
 
-        while (!isExitCommand(command)) {
-            runPOS();
+        while (!Command.isExit(command)) {
+            runPOS(command);
             command = readCommand();
         }
         OutputView.printMenus(menus);
     }
 
-    private static void runPOS() {
-        printInitSetting();
-        //TODO 1, 2번의 경우
+    private static void runPOS(final int command) {
+        OutputView.printTables(tables);
+        if (Command.isOrderRegistration(command)) {
+            //
+        }
+        if (Command.isPayment(command)) {
+            //
+        }
     }
 
-    private static void printInitSetting() {
-        OutputView.printTables(tables);
-        readTableNumber();
+    private static void registerOrder(){
+        final int tableNumber = readTableNumber();
+        final int menuNumber = readMenuNumber();
+        final int quantity = readQuantity();
+        Order order = new Order(tableNumber,menuNumber,quantity);
     }
 
     private static int readCommand() {
@@ -60,5 +65,14 @@ public class Application {
                 .noneMatch(table -> table.getTableNumber() == number)) {
             throw new IllegalArgumentException("[ERROR] 허용된 테이블이 아닙니다.");
         }
+    }
+
+    public static int readMenuNumber(){
+        // TODO validate
+        return InputView.inputMenu();
+    }
+
+    private static int readQuantity() {
+        return InputView.inputQuantity();
     }
 }
