@@ -1,6 +1,7 @@
 package domain.menu;
 
 import domain.Category;
+import domain.table.Table;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,5 +23,14 @@ public class MenuRepository {
 
     public static List<Menu> menus() {
         return Collections.unmodifiableList(menus);
+    }
+
+    public static Menu findByNumber(int menuNumber) {
+        for (Menu menu : menus) {
+            if (menu.isPresentNumber(menuNumber)) {
+                return menu;
+            }
+        }
+        return null;
     }
 }

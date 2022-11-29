@@ -28,4 +28,13 @@ public class TableRepository {
         }
         tables.add(new Table(tableNumber));
     }
+
+    public static Table findByNumber(int tableNumber) {
+        for (Table table : tables) {
+            if (table.isPresentNumber(tableNumber)) {
+                return table;
+            }
+        }
+        return null;
+    }
 }

@@ -15,6 +15,13 @@ public class Menu {
         this.price = price;
     }
 
+    public boolean isPresentNumber(int menuNumber) {
+        if (this.number == menuNumber) {
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public String toString() {
         return category + " " + number + " - " + name + " : " + price + "원";

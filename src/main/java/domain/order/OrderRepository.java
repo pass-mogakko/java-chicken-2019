@@ -1,12 +1,15 @@
 package domain.order;
 
+import domain.menu.Menu;
+import domain.table.Table;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class OrderRepository {
     private static final List<Order> orders = new ArrayList<>();
 
-    private static void save(int tableNumber, int , int count) {
+    static void save(Table table, Menu menu, int count) {
         orders.add(new Order(table, menu, count));
     }
 

@@ -4,6 +4,7 @@ import domain.*;
 import domain.menu.Menu;
 import domain.menu.MenuRepository;
 import domain.order.OrderRepository;
+import domain.order.OrderService;
 import domain.table.Table;
 import domain.table.TableRepository;
 import view.InputView;
@@ -40,7 +41,7 @@ public class Controller {
         OutputView.printMenus(menus);
         int menuNumber = getInputMenuNumber();
         int menuCount = getInputMenuCount();
-//        OrderRepository.save(tableNumber, menuNumber, menuCount);
+        OrderService.createOrder(tableNumber, menuNumber, menuCount);
     }
 
     private void makePayment() {
