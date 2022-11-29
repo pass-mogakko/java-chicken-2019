@@ -1,9 +1,12 @@
 package domain;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Table {
 
     private final int number;
-    private int payingMoney = 0;
+    private final Map<Menu, Integer> menuAndQuantity = new HashMap<>();
 
     public Table(final int number) {
         this.number = number;
@@ -18,7 +21,16 @@ public class Table {
         return this.number == number;
     }
 
-    public void menuOrder(int price) {
-        payingMoney += price;
+    public void menuOrder(Menu menu, int orderQuantity) {
+        int menuOriginalQuantity = menuAndQuantity.getOrDefault(menu, 0);
+        menuAndQuantity.put(menu, menuOriginalQuantity + orderQuantity);
+    }
+
+    public boolean isEmpty() {
+        return menuAndQuantity.keySet()
+                .stream()
+                .map(menu -> menuAndQuantity.get(menu))
+                .mapToInt(quantity -> quantity)
+                .sum() == 0;
     }
 }

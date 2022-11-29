@@ -22,9 +22,9 @@ public class TableRepository {
         return Collections.unmodifiableList(tables);
     }
 
-    public static void menuOrder(int tableNumber, int price) {
+    public static void menuOrder(int tableNumber, Menu menu, int orderQuantity) {
         Table table = findTableByNumber(tableNumber);
-        table.menuOrder(price);
+        table.menuOrder(menu, orderQuantity);
     }
 
     private static Table findTableByNumber(int tableNumber) {
@@ -32,5 +32,12 @@ public class TableRepository {
                 .filter(table -> table.isSameNumber(tableNumber))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.NOT_EXIST_TABLE));
+    }
+
+    public static void validateEmptyTable(int tableNumber) {
+        Table table = findTableByNumber(tableNumber);
+        if (table.isEmpty()) {
+            throw new IllegalArgumentException(ErrorMessage.EMPTY_TABLE);
+        }
     }
 }
