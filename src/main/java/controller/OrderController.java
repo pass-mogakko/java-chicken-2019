@@ -2,6 +2,7 @@ package controller;
 
 import domain.Menu;
 import domain.MenuNumber;
+import domain.MenuQuantity;
 import domain.MenuRepository;
 import domain.Table;
 import domain.TableRepository;
@@ -56,7 +57,13 @@ public class OrderController {
     }
 
     private static int requestMenuQuantity() {
-        int menuQuantity = InputView.requestMenuQuantity();
-        return 0;
+        int quantity = InputView.requestMenuQuantity();
+        try {
+            new MenuQuantity(quantity);
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            requestMenuQuantity();
+        }
+        return quantity;
     }
 }
