@@ -27,4 +27,11 @@ public class InputView {
         System.out.println();
         return scanner.nextInt();
     }
+
+    public static int requestMenuQuantity() {
+        System.out.println();
+        System.out.printf(Message.INFO_MESSAGE_FORM, Message.REQUEST_MENU_QUANTITY);
+        System.out.println();
+        return scanner.nextInt();
+    }
 }

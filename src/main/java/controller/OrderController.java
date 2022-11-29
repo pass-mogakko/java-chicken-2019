@@ -25,6 +25,7 @@ public class OrderController {
     public static void run() {
         int orderTableNumber = requestOrderTableNumber();
         int registerMenuNumber = requestRegisterMenu();
+        int menuQuantity = requestMenuQuantity();
 
     }
 
@@ -52,5 +53,10 @@ public class OrderController {
             requestRegisterMenu();
         }
         return registerMenu;
+    }
+
+    private static int requestMenuQuantity() {
+        int menuQuantity = InputView.requestMenuQuantity();
+        return 0;
     }
 }
