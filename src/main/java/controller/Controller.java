@@ -18,7 +18,9 @@ public class Controller {
 
     public void run() {
         int command = getInputCommand();
-        String tableNumber = getInputTableNumber();
+        if (command == 1) {
+            String tableNumber = getInputTableNumber();
+        }
 
         final List<Menu> menus = MenuRepository.menus();
         OutputView.printMenus(menus);
