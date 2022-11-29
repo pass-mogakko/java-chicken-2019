@@ -64,6 +64,6 @@ public class OutputView {
         System.out.printf(Message.INFO_MESSAGE_FORM, Message.ORDER_HISTORY);
         System.out.println();
         System.out.println(Message.ORDER_HISTORY_TOP_BAR);
-        System.out.println(table.menuHistory());
+        System.out.print(table.menuHistory());
     }
 }

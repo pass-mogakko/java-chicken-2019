@@ -13,7 +13,7 @@ public class PaymentController {
         int paymentTableNumber = requestPaymentTableNumber();
         boolean isEmptyTable = validateIsEmptyTable(paymentTableNumber);
         if (isEmptyTable) {
-            return ;
+            return;
         }
         requestPaymentMethod(paymentTableNumber);
 
@@ -47,5 +47,6 @@ public class PaymentController {
     private static void requestPaymentMethod(int paymentTableNumber) {
         Table table = TableRepository.findTableByNumber(paymentTableNumber);
         OutputView.printOrderHistory(table);
+        int paymentMethod = InputView.requestPaymentMethod(paymentTableNumber);
     }
 }

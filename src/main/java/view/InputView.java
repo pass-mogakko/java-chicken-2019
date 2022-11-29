@@ -34,4 +34,13 @@ public class InputView {
         System.out.println();
         return scanner.nextInt();
     }
+
+    public static int requestPaymentMethod(int tableNumber) {
+        System.out.println();
+        String proceedToPayment = String.format(Message.PROCEED_TO_PAYMENT, tableNumber);
+        System.out.printf(Message.INFO_MESSAGE_FORM, proceedToPayment);
+        System.out.println();
+        System.out.printf(Message.INFO_MESSAGE_FORM, Message.PAYMENT_METHOD);
+        return scanner.nextInt();
+    }
 }
