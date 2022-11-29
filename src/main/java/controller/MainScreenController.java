@@ -2,13 +2,12 @@ package controller;
 
 import domain.MainScreenSelection;
 import java.util.List;
-import service.MainScreenService;
+import view.InputView;
 import view.OutputView;
 
 public class MainScreenController {
 
     private static final MainScreenController mainController = new MainScreenController();
-    private static final MainScreenService mainScreenService = MainScreenService.getInstance();
 
     private MainScreenController() {
 
@@ -18,15 +17,17 @@ public class MainScreenController {
         return mainController;
     }
 
-    public void run() {
+    public static void run() {
         List<MainScreenSelection> allMainScreenSelection = MainScreenSelection.findAllMainScreenSelection();
         OutputView.printMainScreen(allMainScreenSelection);
-        //        final int tableNumber = InputView.inputTableNumber();
-        //        try {
-        //            MainScreenSelection.validateInput(tableNumber);
-        //        } catch (IllegalArgumentException e) {
-        //            System.out.printf(ErrorMessage.ERROR_MESSAGE_FORM, e.getMessage());
-        //            run();
-        //        }
+        int mainScreenSelection = InputView.requestMainScreenSelection();
+        try {
+            MainScreenSelection selection = MainScreenSelection.findClassBySelection(mainScreenSelection);
+            selection.doNextAction();
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            run();
+        }
+
     }
 }
