@@ -2,9 +2,12 @@ package domain;
 
 public enum ErrorCode {
 
-    // 명령어 입력 관련 오류
-    INVALID_TYPE_COMMAND("[ERROR] 명령어는 숫자로만 입력하여 주십시오."),
-    INVALID_RANGE_COMMAND("[ERROR] 명령어는 안내된 숫자 범위 내에서 선택하여 주십시오.");
+    // 입력값 타입 오류
+    INVALID_TYPE("[ERROR] 숫자로만 입력하여 주십시오."),
+
+    // 입력값 유효성 오류 (범위 오류)
+    INVALID_COMMAND_RANGE("[ERROR] 명령어는 안내된 숫자 범위 내에서 선택하여 주십시오."),
+    INVALID_TABLE_NUMBER_RANGE("[ERROR] 테이블 번호는 1~ 8번 중에서 선택하여 주십시오.");
 
     private final String message;
 

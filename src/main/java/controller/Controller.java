@@ -19,7 +19,8 @@ public class Controller {
     public void run() {
         int command = getInputCommand();
         if (command == 1) {
-            String tableNumber = getInputTableNumber();
+            OutputView.printTables(tables);
+            int tableNumber = getInputTableNumber();
         }
 
         final List<Menu> menus = MenuRepository.menus();
@@ -30,17 +31,22 @@ public class Controller {
         while (true) {
             try {
                 String input = InputView.inputCommand();
-                return validator.validateInputCommand(input);
+                return validator.validateCommand(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    private String getInputTableNumber() {
-        OutputView.printTables(tables);
-        String input = InputView.inputTableNumber();
-        return input;
+    private int getInputTableNumber() {
+        while (true) {
+            try {
+                String input = InputView.inputTableNumber();
+                return validator.validateTableNumber(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
 }

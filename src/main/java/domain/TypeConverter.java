@@ -8,7 +8,7 @@ public class TypeConverter {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INVALID_TYPE_COMMAND.getMessage());
+            throw new IllegalArgumentException(INVALID_TYPE.getMessage());
         }
     }
 
