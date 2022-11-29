@@ -48,7 +48,7 @@ public class Controller {
     private void makePayment() {
         OutputView.printTables(tables);
         int tableNumber = getInputTableNumberToPay();
-        // 주문한 테이블인지 확인하기
+        TableService.makePayment(tableNumber);
     }
 
     private int getInputCommand() {
