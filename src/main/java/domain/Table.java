@@ -29,7 +29,7 @@ public class Table {
     public boolean isEmpty() {
         return menuAndQuantity.keySet()
                 .stream()
-                .map(menu -> menuAndQuantity.get(menu))
+                .map(menuAndQuantity::get)
                 .mapToInt(quantity -> quantity)
                 .sum() == 0;
     }

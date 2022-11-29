@@ -13,7 +13,7 @@ public enum MenuNumber {
     TWENTY_ONE(21),
     TWENTY_TWO(22);
 
-    private int number;
+    private final int number;
 
     MenuNumber(int number) {
         this.number = number;

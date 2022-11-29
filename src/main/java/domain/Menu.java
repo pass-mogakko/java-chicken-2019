@@ -23,11 +23,6 @@ public class Menu {
         return this.number == number;
     }
 
-    //    public int computePrice(int quantity) {
-    //        return price * quantity;
-    //    }
-
-
     public String getName() {
         return name;
     }

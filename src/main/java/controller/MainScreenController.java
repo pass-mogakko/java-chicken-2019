@@ -7,16 +7,6 @@ import view.OutputView;
 
 public class MainScreenController {
 
-    private static final MainScreenController mainController = new MainScreenController();
-
-    private MainScreenController() {
-
-    }
-
-    public static MainScreenController getInstance() {
-        return mainController;
-    }
-
     public static void run() {
         List<MainScreenSelection> allMainScreenSelection = MainScreenSelection.findAllMainScreenSelection();
         OutputView.printMainScreen(allMainScreenSelection);
@@ -28,6 +18,5 @@ public class MainScreenController {
             OutputView.printErrorMessage(e.getMessage());
             run();
         }
-
     }
 }
