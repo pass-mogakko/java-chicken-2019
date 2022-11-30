@@ -34,4 +34,15 @@ public class TableRepository {
         }
         return null;
     }
+
+    public static void deleteByNumber(int tableNumber) {
+        Table paidTable = findByNumber(tableNumber);
+
+        for (Table table : tables) {
+            if (table.equals(paidTable)) {
+                tables.remove(table);
+                return;
+            }
+        }
+    }
 }

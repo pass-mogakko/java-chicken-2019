@@ -25,6 +25,10 @@ public class TableController {
         return tableNumber;
     }
 
+    public static void emptyTable(int tableNumber) {
+        TableRepository.deleteByNumber(tableNumber);
+    }
+
     private static int getInputTableNumberToOrder() {
         while (true) {
             try {
@@ -48,4 +52,5 @@ public class TableController {
             }
         }
     }
+
 }

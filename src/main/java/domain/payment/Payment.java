@@ -31,7 +31,8 @@ public class Payment {
 
     private int calculateDiscountPrice() {
         int chickenCount = countChickenOrders();
-        return chickenCount * DISCOUNT_PRICE_PER_TYPE / DISCOUNT_UNIT;
+        int discountCount = chickenCount / DISCOUNT_UNIT;
+        return discountCount * DISCOUNT_PRICE_PER_TYPE;
     }
 
     private int countChickenOrders() {

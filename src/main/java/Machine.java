@@ -52,6 +52,8 @@ public class Machine {
         int method = PaymentController.readPaymentNumber(tableNumber);
         Payment payment = PaymentController.createPayment(tableNumber, method);
         PaymentController.showTotalPrice(payment);
+        OrderController.emptyOrders(tableNumber);
+        TableController.emptyTable(tableNumber);
     }
 
 

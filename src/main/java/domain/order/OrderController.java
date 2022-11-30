@@ -17,4 +17,7 @@ public class OrderController {
         OutputView.printOrders(orders);
     }
 
+    public static void emptyOrders(int tableNumber) {
+        OrderRepository.deleteByTableNumber(tableNumber);
+    }
 }

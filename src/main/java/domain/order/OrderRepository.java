@@ -6,7 +6,6 @@ import domain.table.TableRepository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class OrderRepository {
     private static final List<Order> orders = new ArrayList<>();
@@ -24,5 +23,10 @@ public class OrderRepository {
             }
         }
         return result;
+    }
+
+    public static void deleteByTableNumber(int tableNumber) {
+        List<Order> paidOrders = OrderRepository.findAllByTableNumber(tableNumber);
+        orders.removeAll(paidOrders);
     }
 }
