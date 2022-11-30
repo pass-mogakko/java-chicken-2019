@@ -15,4 +15,11 @@ public class IOValidator {
             throw new IllegalArgumentException("출력값이 null입니다.");
         }
     }
+
+    public static void validateStringToNaturalNumber(String value) {
+        validateStringToInteger(value);
+        if (Integer.parseInt(value) <= 0) {
+            throw new IllegalArgumentException("입력값이 자연수가 아닙니다.");
+        }
+    }
 }

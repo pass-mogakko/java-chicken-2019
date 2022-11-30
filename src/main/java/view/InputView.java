@@ -31,6 +31,20 @@ public class InputView {
         return menuNumber;
     }
 
+    public static int inputMenuAmount() {
+        System.out.println("## 메뉴의 수량을 입력하세요.");
+        int menuAmount = readNaturalNumber();
+        System.out.print(System.lineSeparator());
+        return menuAmount;
+    }
+
+    private static int readNaturalNumber() {
+        String readValue = scanner.nextLine();
+        IOValidator.validateStringToNaturalNumber(readValue);
+        return Integer.parseInt(readValue);
+    }
+
+
     private static int readInt() {
         String readValue = scanner.nextLine();
         IOValidator.validateStringToInteger(readValue);
