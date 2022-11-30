@@ -17,6 +17,7 @@ public class OutputView {
         System.out.println("## 메인화면");
         Arrays.stream(Main.values())
                 .forEach(service -> System.out.printf(Format.MAIN_SERVICE.getValue(), service.getNumber(), service.getName()));
+        System.out.print(System.lineSeparator());
     }
 
     public static void printTables(final List<Table> tables) {

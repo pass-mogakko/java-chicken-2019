@@ -4,6 +4,7 @@ import service.MenuService;
 import service.OrderService;
 import service.PayService;
 import service.TableService;
+import view.InputView;
 import view.OutputView;
 
 public class PosController {
@@ -16,8 +17,7 @@ public class PosController {
     public void run() {
         while (true) {
             showServices();
-            // TODO 서비스 번호 입력받기
-            int selectNumber = 3;
+            int selectNumber = InputView.inputServiceNumber();
             doSelectedService(selectNumber);
             if (selectNumber == 3) {
                 exit();

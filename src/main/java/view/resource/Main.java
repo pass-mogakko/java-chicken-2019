@@ -1,5 +1,7 @@
 package view.resource;
 
+import java.util.Arrays;
+
 public enum Main {
 
     ORDER(1, "주문등록"),
@@ -21,5 +23,11 @@ public enum Main {
 
     public String getName() {
         return name;
+    }
+
+    // TODO 결제유형 선택 시에도 같은 방식 이용
+    public static boolean hasMatchingNumber(int command) {
+        return Arrays.stream(values())
+                .anyMatch(value -> command == value.number);
     }
 }
