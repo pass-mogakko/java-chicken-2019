@@ -46,6 +46,9 @@ public class PosController {
         OutputView.printTables(tableService.getAllTables());
         int tableNumber = InputView.inputTableNumber();
         OutputView.printMenus(menuService.getAllMenus());
+        int menuNumber = InputView.inputMenuNumber();
+        // TODO 수량 받기
+        // TODO orderService에서 주문 등록하기 + order() 메소드 단위로 예외처리
     }
 
     private void pay() {

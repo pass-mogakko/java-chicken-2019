@@ -24,6 +24,13 @@ public class InputView {
         return tableNumber;
     }
 
+    public static int inputMenuNumber() {
+        System.out.println("## 등록할 메뉴를 선택하세요.");
+        int menuNumber = readInt();
+        System.out.print(System.lineSeparator());
+        return menuNumber;
+    }
+
     private static int readInt() {
         String readValue = scanner.nextLine();
         IOValidator.validateStringToInteger(readValue);
