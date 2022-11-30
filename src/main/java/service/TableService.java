@@ -9,7 +9,11 @@ public class TableService {
 
     public List<Table> getAllTables() {
         List<Table> tables = TableRepository.tables();
-        DataValidator.validateNullOrEmpty(tables);
         return tables;
+    }
+
+    public void addTableOrder(int tableNumber, int menuNumber, int quantity) {
+        Table tableForOrder = TableRepository.getTableByNumber(tableNumber);
+        tableForOrder.updateOrder(menuNumber, quantity);
     }
 }

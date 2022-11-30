@@ -4,8 +4,6 @@ import static view.resource.Main.ORDER;
 import static view.resource.Main.PAY;
 
 import service.MenuService;
-import service.OrderService;
-import service.PayService;
 import service.TableService;
 import view.InputView;
 import view.OutputView;
@@ -14,8 +12,6 @@ public class PosController {
 
     private final TableService tableService = new TableService();
     private final MenuService menuService = new MenuService();
-    private final OrderService orderService = new OrderService();
-    private final PayService payService = new PayService();
 
     public void run() {
         while (true) {
@@ -49,8 +45,8 @@ public class PosController {
         OutputView.printMenus(menuService.getAllMenus());
         int menuNumber = InputView.inputMenuNumber();
         int menuAmount = InputView.inputMenuAmount();
+        tableService.addTableOrder(tableNumber, menuNumber, menuAmount);
         // TODO 예외 발생 시 order() 다시 실행
-        orderService.updateTableOrder(tableNumber, menuNumber, menuAmount);
     }
 
     private void pay() {
