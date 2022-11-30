@@ -4,6 +4,7 @@ import service.MenuService;
 import service.OrderService;
 import service.PayService;
 import service.TableService;
+import view.OutputView;
 
 public class PosController {
 
@@ -20,12 +21,13 @@ public class PosController {
             doSelectedService(selectNumber);
             if (selectNumber == 3) {
                 exit();
+                return;
             }
         }
     }
 
     private void showServices() {
-        // TODO 서비스 목록 출력
+        OutputView.printMain();
     }
 
     private void doSelectedService(int selectNumber) {

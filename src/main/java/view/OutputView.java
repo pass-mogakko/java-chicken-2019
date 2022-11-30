@@ -2,13 +2,22 @@ package view;
 
 import domain.Menu;
 import domain.Table;
+import view.resource.Format;
+import view.resource.Main;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class OutputView {
     private static final String TOP_LINE = "┌ ─ ┐";
     private static final String TABLE_FORMAT = "| %s |";
     private static final String BOTTOM_LINE = "└ ─ ┘";
+
+    public static void printMain() {
+        System.out.println("## 메인화면");
+        Arrays.stream(Main.values())
+                .forEach(service -> System.out.printf(Format.MAIN_SERVICE.getValue(), service.getNumber(), service.getName()));
+    }
 
     public static void printTables(final List<Table> tables) {
         System.out.println("## 테이블 목록");
