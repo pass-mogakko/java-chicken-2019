@@ -21,4 +21,9 @@ public class MenuRepository {
     public static List<Menu> menus() {
         return Collections.unmodifiableList(menus);
     }
+
+    public static boolean hasMenu(int number) {
+        return menus.stream()
+                .anyMatch(menu -> menu.getNumber() == number);
+    }
 }
