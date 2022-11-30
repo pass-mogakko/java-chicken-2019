@@ -52,7 +52,7 @@ public class Controller {
         TableService.makePayment(tableNumber);
         List<OrderDto> orders = OrderService.showOrders(tableNumber);
         OutputView.printOrders(orders);
-        String payment = InputView.inputPaymentNumber(tableNumber);
+        int payment = getInputPaymentNumber(tableNumber);
     }
 
     private int getInputCommand() {
@@ -105,6 +105,17 @@ public class Controller {
             try {
                 String input = InputView.inputTableNumberToPay();
                 return validator.validateTableNumber(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private int getInputPaymentNumber(int tableNumber) {
+        while (true) {
+            try {
+                String input = InputView.inputPaymentNumber(tableNumber);
+                return validator.validatePaymentNumber(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

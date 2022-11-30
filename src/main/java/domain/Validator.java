@@ -31,6 +31,12 @@ public class Validator {
         return menuCount;
     }
 
+    public int validatePaymentNumber(String input) {
+        int payment = converter.convertStringToInt(input);
+        checkPaymentNumberRange(payment);
+        return payment;
+    }
+
     private void checkCommandRange(int command) {
         if (command < 1 || command > 3) {
             throw new IllegalArgumentException(INVALID_COMMAND_RANGE.getMessage());
@@ -55,6 +61,12 @@ public class Validator {
         }
         if (menuCount < 1) {
             throw new IllegalArgumentException(INVALID_MENU_COUNT_RANGE_BOTTOM.getMessage());
+        }
+    }
+
+    private void checkPaymentNumberRange(int payment) {
+        if (payment < 1 || payment > 2) {
+            throw new IllegalArgumentException(INVALID_PAYMENT_NUMBER_RANGE.getMessage());
         }
     }
 
