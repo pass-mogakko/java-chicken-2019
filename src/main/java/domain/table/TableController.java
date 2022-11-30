@@ -40,7 +40,9 @@ public class TableController {
         while (true) {
             try {
                 String input = InputView.inputTableNumberToPay();
-                return validator.validateTableNumber(input);
+                int tableNumber = validator.validateTableNumber(input);
+                TableService.checkTable(tableNumber);
+                return tableNumber;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

@@ -11,13 +11,13 @@ import java.util.Optional;
 public class OrderRepository {
     private static final List<Order> orders = new ArrayList<>();
 
-    static void save(Optional<Table> table, Menu menu, int count) {
+    static void save(Table table, Menu menu, int count) {
         orders.add(new Order(table, menu, count));
     }
 
     public static List<Order> findAllByTableNumber(int tableNumber) {
         List<Order> result = new ArrayList<>();
-        Optional<Table> table = TableRepository.findByNumber(tableNumber);
+        Table table = TableRepository.findByNumber(tableNumber);
         for (Order order : orders) {
             if (order.isEqualTable(table)) {
                 result.add(order);

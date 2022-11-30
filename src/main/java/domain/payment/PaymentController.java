@@ -1,30 +1,22 @@
 package domain.payment;
 
 import domain.Validator;
-import domain.dto.OrderDto;
-import domain.order.OrderController;
-import domain.order.OrderService;
-import domain.table.Table;
-import domain.table.TableController;
-import domain.table.TableRepository;
 import view.InputView;
-import view.OutputView;
 
-import java.util.List;
 
 public class PaymentController {
     private static final Validator validator = new Validator();
 
-    public static void makePayment(List<Table> tables) {
-        int tableNumber = TableController.readNumberToPay(tables);
-        PaymentService.makePayment(tableNumber);
-        OrderController.showOrders(tableNumber);
-
-        int payment = readPaymentNumber(tableNumber);
+    public static Payment createPayment(int tableNumber, int command) {
+        return PaymentService.createPayment(tableNumber, command);
     }
 
+    public static void getTotalPrice(Payment payment) {
+        PaymentService.getTotalPrice(payment);
+    }
 
-    private static int readPaymentNumber(int payment) {
+    // 예외처리 - 컨트롤러에서 할지 고민 및 리팩토링 필요
+    public static int readPaymentNumber(int payment) {
         while (true) {
             try {
                 String input = InputView.inputPaymentNumber(payment);

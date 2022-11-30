@@ -3,6 +3,7 @@ import domain.menu.Menu;
 import domain.menu.MenuController;
 import domain.menu.MenuRepository;
 import domain.order.OrderController;
+import domain.payment.Payment;
 import domain.payment.PaymentController;
 import domain.table.Table;
 import domain.table.TableController;
@@ -28,7 +29,7 @@ public class Machine {
             if (command == 1)
                 order();
             if (command == 2)
-                PaymentController.makePayment(tables);
+                pay();
             command = getInputCommand();
         }
     }
@@ -43,6 +44,17 @@ public class Machine {
 
         OrderController.createOrder(tableNumber, menuNumber, menuCount);
     }
+
+    private void pay() {
+        int tableNumber = TableController.readNumberToPay(tables);
+        OrderController.showOrders(tableNumber);
+
+        int method = PaymentController.readPaymentNumber(tableNumber);
+        Payment payment = PaymentController.createPayment(tableNumber, method);
+        PaymentController.getTotalPrice(payment);
+
+    }
+
 
     private int getInputCommand() {
         while (true) {

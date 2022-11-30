@@ -25,10 +25,10 @@ public class TableRepository {
         tables.add(table);
     }
 
-    public static Optional<Table> findByNumber(int tableNumber) {
+    public static Table findByNumber(int tableNumber) {
         for (Table table : tables) {
-            if (table.isPresentNumber(tableNumber))
-                return Optional.of(table);
+            if (table != null || table.isPresentNumber(tableNumber))
+                return table;
         }
         return null;
     }

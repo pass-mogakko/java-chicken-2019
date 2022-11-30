@@ -1,7 +1,5 @@
 package domain.menu;
 
-import domain.Category;
-
 public class Menu {
     private final int number;
     private final String name;
@@ -24,6 +22,10 @@ public class Menu {
 
     public String getName() {
         return name;
+    }
+
+    public int getNumber() {
+        return number;
     }
 
     public int getPrice() {

@@ -13,7 +13,7 @@ import java.util.Optional;
 public class OrderService {
 
     public static void createOrder(int tableNumber, int menuNumber, int count) {
-        Optional<Table> table = TableRepository.findByNumber(tableNumber);
+        Table table = TableRepository.findByNumber(tableNumber);
         Menu menu = MenuRepository.findByNumber(menuNumber);
         OrderRepository.save(table, menu, count);
     }
