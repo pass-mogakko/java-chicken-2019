@@ -1,10 +1,17 @@
-package domain;
+package domain.table;
 
 public class Table {
     private final int number;
 
     public Table(final int number) {
         this.number = number;
+    }
+
+    public boolean isPresentNumber(int tableNumber) {
+        if (this.number == tableNumber) {
+            return true;
+        }
+        return false;
     }
 
     @Override

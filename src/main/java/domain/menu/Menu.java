@@ -1,4 +1,4 @@
-package domain;
+package domain.menu;
 
 public class Menu {
     private final int number;
@@ -11,6 +11,25 @@ public class Menu {
         this.name = name;
         this.category = category;
         this.price = price;
+    }
+
+    public boolean isPresentNumber(int menuNumber) {
+        if (this.number == menuNumber) {
+            return true;
+        }
+        return false;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public int getPrice() {
+        return price;
     }
 
     @Override
