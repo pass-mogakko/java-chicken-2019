@@ -16,6 +16,7 @@ public class OutputView {
     private static final String ORDER_INFO_MESSAGE = "## 주문 내역\n메뉴 수량 금액";
     private static final String FINAL_PRICE_MESSAGE = "## 최종 결제할 금액";
     private static final String WON = "원";
+    private static final String PAYMENT_COMPLETE_MESSAGE = "## 결제가 완료되었습니다. 메인 페이지로 돌아갑니다.";
 
     public static void printTables(final List<Table> tables) {
         System.out.println();
@@ -66,4 +67,9 @@ public class OutputView {
         System.out.println(FINAL_PRICE_MESSAGE);
         System.out.println(finalPrice + WON);
     }
-}
+
+    public static void printPaymentCompleteMessage() {
+        System.out.println();
+        System.out.println(PAYMENT_COMPLETE_MESSAGE);
+        System.out.println();
+    }}

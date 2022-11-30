@@ -9,6 +9,7 @@ import domain.table.Table;
 import domain.table.TableController;
 import domain.table.TableRepository;
 import view.InputView;
+import view.OutputView;
 
 import java.util.List;
 
@@ -48,12 +49,12 @@ public class Machine {
     private void pay() {
         int tableNumber = TableController.readNumberToPay(tables);
         OrderController.showOrders(tableNumber);
-
         int method = PaymentController.readPaymentNumber(tableNumber);
         Payment payment = PaymentController.createPayment(tableNumber, method);
         PaymentController.showTotalPrice(payment);
         OrderController.emptyOrders(tableNumber);
         TableController.emptyTable(tableNumber);
+        OutputView.printPaymentCompleteMessage();
     }
 
 
