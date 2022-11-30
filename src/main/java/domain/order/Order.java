@@ -1,5 +1,6 @@
 package domain.order;
 
+import domain.dto.OrderDto;
 import domain.menu.Menu;
 import domain.table.Table;
 
@@ -21,5 +22,13 @@ public class Order {
             return true;
         }
         return false;
+    }
+
+    OrderDto makeDto() {
+        return new OrderDto.Builder()
+                .menuName(menu.getName())
+                .count(count)
+                .price(menu.getPrice())
+                .build();
     }
 }

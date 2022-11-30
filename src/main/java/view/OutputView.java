@@ -1,5 +1,6 @@
 package view;
 
+import domain.dto.OrderDto;
 import domain.menu.Menu;
 import domain.table.Table;
 
@@ -12,6 +13,7 @@ public class OutputView {
     private static final String BOTTOM_LINE = "└ ─ ┘";
     private static final String MENU_INFO_MESSAGE = "## 메뉴 목록";
     private static final String ORDER_COMPLETE_MESSAGE = "주문이 완료되었습니다. 메인 페이지로 돌아갑니다.";
+    private static final String ORDER_INFO_MESSAGE = "## 주문 내역\n메뉴 수량 금액";
 
     public static void printTables(final List<Table> tables) {
         System.out.println();
@@ -48,5 +50,12 @@ public class OutputView {
         System.out.println();
         System.out.println(ORDER_COMPLETE_MESSAGE);        System.out.println();
         System.out.println();
+    }
+
+    public static void printOrders(List<OrderDto> orderDtos) {
+        System.out.println();
+        System.out.println(ORDER_INFO_MESSAGE);
+        for (OrderDto orderDto : orderDtos)
+            System.out.println(orderDto.toString());
     }
 }

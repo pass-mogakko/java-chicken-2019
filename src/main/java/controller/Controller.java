@@ -1,6 +1,7 @@
 package controller;
 
 import domain.*;
+import domain.dto.OrderDto;
 import domain.menu.Menu;
 import domain.menu.MenuRepository;
 import domain.order.OrderService;
@@ -49,6 +50,9 @@ public class Controller {
         OutputView.printTables(tables);
         int tableNumber = getInputTableNumberToPay();
         TableService.makePayment(tableNumber);
+        List<OrderDto> orders = OrderService.showOrders(tableNumber);
+        OutputView.printOrders(orders);
+
     }
 
     private int getInputCommand() {
@@ -106,5 +110,4 @@ public class Controller {
             }
         }
     }
-
 }
