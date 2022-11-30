@@ -52,7 +52,7 @@ public class Controller {
         TableService.makePayment(tableNumber);
         List<OrderDto> orders = OrderService.showOrders(tableNumber);
         OutputView.printOrders(orders);
-
+        String payment = InputView.inputPaymentNumber(tableNumber);
     }
 
     private int getInputCommand() {

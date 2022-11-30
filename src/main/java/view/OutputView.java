@@ -48,7 +48,7 @@ public class OutputView {
 
     public static void printOrderCompleteMessage() {
         System.out.println();
-        System.out.println(ORDER_COMPLETE_MESSAGE);        System.out.println();
+        System.out.println(ORDER_COMPLETE_MESSAGE);
         System.out.println();
     }
 
