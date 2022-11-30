@@ -28,7 +28,7 @@ public class OutputView {
         printLine(TABLE_TOP_LINE.getValue(), size);
         printTableNumbers(tables);
         printLine(TABLE_BOTTOM_LINE.getValue(), size);
-        System.out.println(System.lineSeparator());
+        System.out.print(System.lineSeparator());
     }
 
     public static void printMenus(final List<Menu> menus) {

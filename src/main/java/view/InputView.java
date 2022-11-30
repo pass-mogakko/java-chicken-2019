@@ -9,16 +9,19 @@ public class InputView {
 
     public static int inputServiceNumber() {
         System.out.println("## 원하는 기능을 선택하세요.");
-        int input = readInt();
-        if (!Main.hasMatchingNumber(input)) {
+        int serviceNumber = readInt();
+        System.out.print(System.lineSeparator());
+        if (!Main.hasMatchingNumber(serviceNumber)) {
             throw new IllegalArgumentException("잘못된 번호를 입력했습니다.");
         }
-        return input;
+        return serviceNumber;
     }
 
     public static int inputTableNumber() {
         System.out.println("## 주문할 테이블을 선택하세요.");
-        return scanner.nextInt();
+        int tableNumber = readInt();
+        System.out.print(System.lineSeparator());
+        return tableNumber;
     }
 
     private static int readInt() {
