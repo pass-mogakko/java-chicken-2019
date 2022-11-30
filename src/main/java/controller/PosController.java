@@ -1,5 +1,8 @@
 package controller;
 
+import static view.resource.Main.ORDER;
+import static view.resource.Main.PAY;
+
 import service.MenuService;
 import service.OrderService;
 import service.PayService;
@@ -31,11 +34,10 @@ public class PosController {
     }
 
     private void doSelectedService(int selectNumber) {
-        // TODO 서비스 번호 상수처리
-        if (selectNumber == 1) {
+        if (selectNumber == ORDER.getNumber()) {
             order();
         }
-        if (selectNumber == 2) {
+        if (selectNumber == PAY.getNumber()) {
             pay();
         }
         // TODO 예외 발생
@@ -53,6 +55,8 @@ public class PosController {
 
     private void pay() {
         // TODO 결제 서비스
+        int tableNumber = InputView.inputTableNumber();
+        OutputView.printTables(tableService.getAllTables());
     }
 
     private void exit() {
