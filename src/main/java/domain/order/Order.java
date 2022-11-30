@@ -1,11 +1,8 @@
 package domain.order;
 
 import domain.dto.OrderDto;
-import domain.menu.Category;
 import domain.menu.Menu;
 import domain.table.Table;
-
-import java.util.Optional;
 
 public class Order {
     private Table table;
@@ -23,6 +20,10 @@ public class Order {
             return true;
         }
         return false;
+    }
+
+    public Table getTable() {
+        return table;
     }
 
     public Menu getMenu() {

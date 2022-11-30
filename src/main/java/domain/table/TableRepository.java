@@ -26,8 +26,10 @@ public class TableRepository {
     }
 
     public static Table findByNumber(int tableNumber) {
+        if (tables.isEmpty())
+            return null;
         for (Table table : tables) {
-            if (table != null || table.isPresentNumber(tableNumber))
+            if (table.isPresentNumber(tableNumber))
                 return table;
         }
         return null;

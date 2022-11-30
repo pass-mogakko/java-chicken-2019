@@ -8,7 +8,6 @@ import domain.table.TableRepository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class OrderService {
 
@@ -20,10 +19,11 @@ public class OrderService {
 
     public static List<OrderDto> showOrders(int tableNumber) {
         List<OrderDto> result = new ArrayList<>();
-
+        Table table = TableRepository.findByNumber(tableNumber);
         List<Order> orders = OrderRepository.findAllByTableNumber(tableNumber);
         for (Order order : orders) {
-            result.add(order.makeDto());
+            if (order.getTable() == table)
+               result.add(order.makeDto());
         }
         return result;
     }
