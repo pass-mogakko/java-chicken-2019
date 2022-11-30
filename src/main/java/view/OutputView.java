@@ -1,5 +1,9 @@
 package view;
 
+import static view.resource.Format.TABLE_BOTTOM_LINE;
+import static view.resource.Format.TABLE_FORMAT;
+import static view.resource.Format.TABLE_TOP_LINE;
+
 import domain.Menu;
 import domain.Table;
 import view.resource.Format;
@@ -9,23 +13,22 @@ import java.util.Arrays;
 import java.util.List;
 
 public class OutputView {
-    private static final String TOP_LINE = "┌ ─ ┐";
-    private static final String TABLE_FORMAT = "| %s |";
-    private static final String BOTTOM_LINE = "└ ─ ┘";
 
     public static void printMain() {
         System.out.println("## 메인화면");
         Arrays.stream(Main.values())
-                .forEach(service -> System.out.printf(Format.MAIN_SERVICE.getValue(), service.getNumber(), service.getName()));
+                .forEach(service -> System.out.printf(Format.MAIN_SERVICE.getValue(),
+                        service.getNumber(), service.getName()));
         System.out.print(System.lineSeparator());
     }
 
     public static void printTables(final List<Table> tables) {
         System.out.println("## 테이블 목록");
         final int size = tables.size();
-        printLine(TOP_LINE, size);
+        printLine(TABLE_TOP_LINE.getValue(), size);
         printTableNumbers(tables);
-        printLine(BOTTOM_LINE, size);
+        printLine(TABLE_BOTTOM_LINE.getValue(), size);
+        System.out.println(System.lineSeparator());
     }
 
     public static void printMenus(final List<Menu> menus) {
@@ -43,7 +46,7 @@ public class OutputView {
 
     private static void printTableNumbers(final List<Table> tables) {
         for (final Table table : tables) {
-            System.out.printf(TABLE_FORMAT, table);
+            System.out.printf(TABLE_FORMAT.getValue(), table);
         }
         System.out.println();
     }
