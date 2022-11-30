@@ -35,6 +35,7 @@
   - 주문 내역에 대한 식별 번호를 부여한다.
   - 결제를 마치면 결제 상태를 "완료"로 변경한다.
   - 출력 시 결제 상태가 "대기"인 내역만 출력한다.
+  - 결제 상태: 완료, 대기, 실패
 - 결제 유형
   - 식별 가능한 유형명(현금, 카드)
   - 할인율
@@ -111,7 +112,27 @@
 8. - [ ] 잘못된 입력값에 대하여 안내메시지 출력 후 재입력받는 기능
 
 ## 클래스 설계
-[작성 예정]
+### Controller
+- PosController
+
+### Service
+- MenuService
+- TableService
+- OrderService
+- PayService
+
+### Domain
+- Category
+- Menu
+- MenuRepository
+- Table
+- TableRepository
+- Order
+- OrderRepository
+
+### View
+- InputView
+- OutputView
 
 ## 단위 테스트 목록
 [작성 예정]
