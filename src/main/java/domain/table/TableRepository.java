@@ -3,6 +3,7 @@ package domain.table;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 public class TableRepository {
     private static final List<Table> tables = new ArrayList<>();
@@ -24,11 +25,10 @@ public class TableRepository {
         tables.add(table);
     }
 
-    public static Table findByNumber(int tableNumber) {
+    public static Optional<Table> findByNumber(int tableNumber) {
         for (Table table : tables) {
-            if (table.isPresentNumber(tableNumber)) {
-                return table;
-            }
+            if (table.isPresentNumber(tableNumber))
+                return Optional.of(table);
         }
         return null;
     }
