@@ -8,6 +8,8 @@ import java.util.List;
 public class TableService {
 
     public List<Table> getAllTables() {
-        return TableRepository.tables();
+        List<Table> tables = TableRepository.tables();
+        DataValidator.validateNullOrEmpty(tables);
+        return tables;
     }
 }

@@ -9,4 +9,10 @@ public class IOValidator {
             throw new IllegalArgumentException("입력값이 정수가 아닙니다.");
         }
     }
+
+    public static void validateNotNull(Object object) {
+        if (object == null) {
+            throw new IllegalArgumentException("출력값이 null입니다.");
+        }
+    }
 }
