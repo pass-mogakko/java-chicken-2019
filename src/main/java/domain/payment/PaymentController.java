@@ -2,6 +2,7 @@ package domain.payment;
 
 import domain.Validator;
 import view.InputView;
+import view.OutputView;
 
 
 public class PaymentController {
@@ -11,8 +12,9 @@ public class PaymentController {
         return PaymentService.createPayment(tableNumber, command);
     }
 
-    public static void getTotalPrice(Payment payment) {
-        PaymentService.getTotalPrice(payment);
+    public static void showTotalPrice(Payment payment) {
+        int totalPrice = PaymentService.showTotalPrice(payment);
+        OutputView.printFinalPrice(totalPrice);
     }
 
     // 예외처리 - 컨트롤러에서 할지 고민 및 리팩토링 필요

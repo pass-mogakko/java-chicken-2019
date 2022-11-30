@@ -22,9 +22,8 @@ public class PaymentService {
         return new Payment(table, orders, method);
     }
 
-    public static void getTotalPrice(Payment payment) {
-        int totalPrice = payment.calculateTotalPrice();
-
+    public static int showTotalPrice(Payment payment) {
+        return payment.calculateTotalPrice();
     }
 
     private static Method determineMethod(int command) {

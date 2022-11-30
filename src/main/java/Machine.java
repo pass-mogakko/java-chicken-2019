@@ -51,8 +51,7 @@ public class Machine {
 
         int method = PaymentController.readPaymentNumber(tableNumber);
         Payment payment = PaymentController.createPayment(tableNumber, method);
-        PaymentController.getTotalPrice(payment);
-
+        PaymentController.showTotalPrice(payment);
     }
 
 
