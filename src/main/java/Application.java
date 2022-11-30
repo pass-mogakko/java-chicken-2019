@@ -1,9 +1,7 @@
-import controller.Controller;
-
 public class Application {
 
     public static void main(String[] args) {
-        final Controller controller = new Controller();
-        controller.run();
+        final Machine machine = new Machine();
+        machine.run();
     }
 }

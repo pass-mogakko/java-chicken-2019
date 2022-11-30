@@ -12,12 +12,6 @@ public class TableService {
         }
     }
 
-    public static void makePayment(int tableNumber) {
-        if (!isPresentTable(tableNumber)) {
-            throw new IllegalArgumentException(TABLE_NOT_FOUND.getMessage());
-        }
-    }
-
     private static boolean isPresentTable(int tableNumber) {
         Optional<Table> table = TableRepository.findByNumber(tableNumber);
         if (table == null) {
