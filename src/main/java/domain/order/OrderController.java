@@ -1,6 +1,6 @@
 package domain.order;
 
-import domain.Validator;
+import domain.dto.OrderDto;
 import domain.menu.Menu;
 import domain.menu.MenuController;
 import domain.table.Table;
@@ -11,15 +11,15 @@ import java.util.List;
 
 public class OrderController {
 
-    public static void makeOrder(List<Table> tables, List<Menu> menus) {
-        OutputView.printTables(tables);
-        int tableNumber = TableController.readNumber();
-        TableController.updateTable(tableNumber);
-        OutputView.printMenus(menus);
-        int menuNumber = MenuController.readNumber();
-        int menuCount = MenuController.readCount();
+    public static void createOrder(int tableNumber, int menuNumber, int menuCount) {
         OrderService.createOrder(tableNumber, menuNumber, menuCount);
         OutputView.printOrderCompleteMessage();
+    }
+
+    public static void showOrders(int tableNumber){
+        List<domain.dto.OrderDto> orders = OrderService.showOrders(tableNumber);
+        OutputView.printOrders(orders);
+
     }
 
 }

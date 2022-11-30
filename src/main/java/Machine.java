@@ -1,9 +1,11 @@
 import domain.Validator;
 import domain.menu.Menu;
+import domain.menu.MenuController;
 import domain.menu.MenuRepository;
 import domain.order.OrderController;
 import domain.payment.PaymentController;
 import domain.table.Table;
+import domain.table.TableController;
 import domain.table.TableRepository;
 import view.InputView;
 
@@ -24,11 +26,22 @@ public class Machine {
         int command = getInputCommand();
         while (command != 3) {
             if (command == 1)
-                OrderController.makeOrder(tables, menus);
+                order();
             if (command == 2)
                 PaymentController.makePayment(tables);
             command = getInputCommand();
         }
+    }
+
+    private void order() {
+        int tableNumber = TableController.readNumberToOrder(tables);
+        TableController.updateTable(tableNumber);
+
+        MenuController.showMenus(menus);
+        int menuNumber = MenuController.readNumber();
+        int menuCount = MenuController.readCount();
+
+        OrderController.createOrder(tableNumber, menuNumber, menuCount);
     }
 
     private int getInputCommand() {
