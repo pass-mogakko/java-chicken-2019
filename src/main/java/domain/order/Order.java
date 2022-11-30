@@ -41,4 +41,11 @@ public class Order {
                 .price(menu.getPrice())
                 .build();
     }
+
+    public boolean isChickenMenu() {
+        if (menu.getNumber() >= 1 && menu.getNumber() <= 6) {
+            return true;
+        }
+        return false;
+    }
 }

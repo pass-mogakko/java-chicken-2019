@@ -3,15 +3,13 @@ package domain.payment;
 import domain.order.Order;
 import domain.table.Table;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class Payment {
     private Table table;
     private List<Order> orders;
     private Method method;
-    private static int DISCOUNT_RATE = 10;
+    private static int DISCOUNT_UNIT = 10;
     private static int DISCOUNT_PRICE_PER_TYPE = 10000;
 
     public Payment(Table table, List<Order> orders, Method Method) {
@@ -32,17 +30,17 @@ public class Payment {
     }
 
     private int calculateDiscountPrice() {
-        int chickenTypes = getChickenTypes();
-        return chickenTypes / DISCOUNT_RATE * DISCOUNT_PRICE_PER_TYPE;
+        int chickenCount = countChickenOrders();
+        return chickenCount * DISCOUNT_PRICE_PER_TYPE / DISCOUNT_UNIT;
     }
 
-    private int getChickenTypes() {
-        Set<Integer> types = new HashSet<>();
+    private int countChickenOrders() {
+        int cnt = 0;
         for (Order order : orders) {
-            if (order.getMenu().getNumber() > 6) {
-                types.add(order.getMenu().getNumber());
+            if (order.isChickenMenu()) {
+                cnt += order.getCount();
             }
         }
-        return types.size();
+        return cnt;
     }
 }
