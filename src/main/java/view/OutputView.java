@@ -23,6 +23,7 @@ public class OutputView {
     }
 
     public static void printTables(final List<Table> tables) {
+        IOValidator.validateNotNull(tables);
         System.out.println("## 테이블 목록");
         final int size = tables.size();
         printLine(TABLE_TOP_LINE.getValue(), size);
@@ -32,6 +33,7 @@ public class OutputView {
     }
 
     public static void printMenus(final List<Menu> menus) {
+        IOValidator.validateNotNull(menus);
         for (final Menu menu : menus) {
             System.out.println(menu);
         }

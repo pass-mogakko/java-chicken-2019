@@ -44,7 +44,8 @@ public class PosController {
     private void order() {
         // TODO 주문 등록 서비스
         OutputView.printTables(tableService.getAllTables());
-        System.out.println(InputView.inputTableNumber());
+        int tableNumber = InputView.inputTableNumber();
+        OutputView.printMenus(menuService.getAllMenus());
     }
 
     private void pay() {
