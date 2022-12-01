@@ -1,27 +1,15 @@
 package service;
 
-import domain.Menu;
-import domain.MenuRepository;
 import domain.Table;
 import domain.TableRepository;
-import dto.OrderedMenuDTO;
-import dto.TableDTO;
+import domain.order.OrderedMenus;
 
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 public class TableService {
 
-    public List<TableDTO> getAllTables() {
-        List<Table> tables = TableRepository.tables();
-        return convertTableDTOs(tables);
-    }
-
-    private List<TableDTO> convertTableDTOs(List<Table> tables) {
-        return tables.stream()
-                .map(table -> new TableDTO(table.getNumber(), table.hasOrder()))
-                .collect(Collectors.toList());
+    public List<Table> getAllTables() {
+        return TableRepository.tables();
     }
 
     public void addTableOrder(int tableNumber, int menuNumber, int quantity) {
@@ -29,20 +17,8 @@ public class TableService {
         tableForOrder.updateOrder(menuNumber, quantity);
     }
 
-    public List<OrderedMenuDTO> getOrderByTable(int tableNumber) {
+    public OrderedMenus getOrderByTable(int tableNumber) {
         Table table = TableRepository.getTableByNumber(tableNumber);
-        return convertOrderedMenuDTOs(table.getOrderMenus());
-    }
-
-    private List<OrderedMenuDTO> convertOrderedMenuDTOs(Map<Integer, Integer> menus) {
-        return menus.keySet()
-                .stream()
-                .map(number -> convertOrderedMenuDTo(number, menus.get(number)))
-                .collect(Collectors.toList());
-    }
-
-    private OrderedMenuDTO convertOrderedMenuDTo(int number, int quantity) {
-        Menu menu = MenuRepository.getMenuByNumber(number);
-        return new OrderedMenuDTO(menu.getName(), quantity, (menu.getPrice())*quantity);
+        return table.getOrderMenus();
     }
 }

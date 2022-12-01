@@ -1,8 +1,7 @@
 package domain;
 
 import domain.order.Order;
-
-import java.util.Map;
+import domain.order.OrderedMenus;
 
 public class Table {
 
@@ -32,7 +31,7 @@ public class Table {
         return !order.isEmpty();
     }
 
-    public Map<Integer, Integer> getOrderMenus() {
+    public OrderedMenus getOrderMenus() {
         return order.getMenus();
     }
 

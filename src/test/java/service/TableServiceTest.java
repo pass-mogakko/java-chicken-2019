@@ -4,13 +4,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import domain.TableRepository;
-import dto.OrderedMenuDTO;
+import domain.order.OrderedMenus;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
+import java.util.Map;
 
 class TableServiceTest {
 
@@ -38,8 +37,6 @@ class TableServiceTest {
     @DisplayName("주문 등록: 주문 수량 예외 발생")
     @Test
     void addTableOrderWithInvalidAmount() {
-//        tableService.addTableOrder(1, 1, 3);
-
         assertThatThrownBy(() -> tableService.addTableOrder(1, 1, 99))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -47,26 +44,25 @@ class TableServiceTest {
     @DisplayName("주문 조회: 테이블 번호로 조회")
     @Test
     void getOrderByTable() {
-//        tableService.addTableOrder(1, 1, 1);
-        List<OrderedMenuDTO> orderedMenus = tableService.getOrderByTable(1);
+        OrderedMenus orderedMenus = tableService.getOrderByTable(1);
+        Map<Integer, Integer> quantityByMenus = orderedMenus.getQuantityByMenus();
 
-        assertThat(orderedMenus).hasSize(1);
-        assertThat(orderedMenus.get(0).getQuantity()).isEqualTo(1);
+        assertThat(quantityByMenus).hasSize(1);
+        assertThat(quantityByMenus.get(1)).isEqualTo(1);
     }
 
     @DisplayName("주문 조회: 주문이 없는 테이블 번호로 조회")
     @Test
     void getEmptyOrderByTable() {
-//        tableService.addTableOrder(1, 1, 1);
+        OrderedMenus orderedMenus = tableService.getOrderByTable(3);
+        Map<Integer, Integer> quantityByMenus = orderedMenus.getQuantityByMenus();
 
-        assertThat(tableService.getOrderByTable(3)).isEmpty();
+        assertThat(quantityByMenus).isEmpty();
     }
 
     @DisplayName("주문 조회: 테이블 번호 예외 발생")
     @Test
     void getOrderByInvalidTable() {
-//        tableService.addTableOrder(1, 1, 1);
-
         assertThatThrownBy(() -> tableService.getOrderByTable(100))
                 .isInstanceOf(IllegalArgumentException.class);
     }

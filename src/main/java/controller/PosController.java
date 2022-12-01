@@ -40,7 +40,7 @@ public class PosController {
     }
 
     private void order() {
-        OutputView.printTables(tableService.getAllTables());
+        OutputView.printTables(DTOMapper.convert(tableService.getAllTables()));
         int tableNumber = InputView.inputTableNumber();
         OutputView.printMenus(menuService.getAllMenus());
         int menuNumber = InputView.inputMenuNumber();
@@ -50,9 +50,9 @@ public class PosController {
     }
 
     private void pay() {
-        OutputView.printTables(tableService.getAllTables());
+        OutputView.printTables(DTOMapper.convert(tableService.getAllTables()));
         int tableNumber = InputView.inputTableNumber();
-        OutputView.printOrder(tableService.getOrderByTable(tableNumber));
+        OutputView.printOrder(DTOMapper.convert(tableService.getOrderByTable(tableNumber)));
         // TODO 결제 서비스
         // TODO 예외 발생 시 pay() 다시 실행
     }
