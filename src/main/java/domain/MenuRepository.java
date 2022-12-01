@@ -3,6 +3,7 @@ package domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class MenuRepository {
     private static final List<Menu> menus = new ArrayList<>();
@@ -25,5 +26,16 @@ public class MenuRepository {
     public static boolean hasMenu(int number) {
         return menus.stream()
                 .anyMatch(menu -> menu.getNumber() == number);
+    }
+
+    public static Menu getMenuByNumber(int number) {
+        return findMenu(menu -> menu.getNumber() == number);
+    }
+
+    private static Menu findMenu(Predicate<Menu> condition) {
+        return menus.stream()
+                .filter(condition)
+                .findFirst()
+                .orElseThrow(() -> {throw new IllegalArgumentException("해당 메뉴가 존재하지 않습니다.");});
     }
 }

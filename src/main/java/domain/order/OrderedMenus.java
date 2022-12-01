@@ -2,22 +2,27 @@ package domain.order;
 
 import domain.MenuRepository;
 
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class Menus {
+public class OrderedMenus {
 
-    private final Map<Integer, Integer> menus = new LinkedHashMap<>();
+    private final Map<Integer, Integer> quantityByMenus = new LinkedHashMap<>();
+
+    public Map<Integer, Integer> getQuantityByMenus() {
+        return Collections.unmodifiableMap(quantityByMenus);
+    }
 
     public void add(int menuNumber, int quantity) {
-        int totalQuantity = menus.getOrDefault(menuNumber, 0) + quantity;
+        int totalQuantity = quantityByMenus.getOrDefault(menuNumber, 0) + quantity;
         validateMenuNumber(menuNumber);
         validateQuantity(totalQuantity);
-        menus.put(menuNumber, totalQuantity);
+        quantityByMenus.put(menuNumber, totalQuantity);
     }
 
     public void clear() {
-        menus.clear();
+        quantityByMenus.clear();
     }
 
     private void validateMenuNumber(int menuNumber) {

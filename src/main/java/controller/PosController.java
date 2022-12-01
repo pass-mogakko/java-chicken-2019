@@ -52,7 +52,9 @@ public class PosController {
     private void pay() {
         // TODO 결제 서비스
         int tableNumber = InputView.inputTableNumber();
+        // TODO 주문된 테이블 표시
         OutputView.printTables(tableService.getAllTables());
+        // TODO 주문 목록 출력
     }
 
     private void exit() {

@@ -2,6 +2,8 @@ package domain;
 
 import domain.order.Order;
 
+import java.util.Map;
+
 public class Table {
 
     private final int number;
@@ -24,6 +26,10 @@ public class Table {
 
     public int getNumber() {
         return number;
+    }
+
+    public Map<Integer, Integer> getOrderMenus() {
+        return order.getMenus();
     }
 
     @Override
