@@ -1,24 +1,23 @@
 package domain;
 
-import java.util.List;
-
 public class Order {
-    private final int tableNumber;
-    private final int menuNumber;
+    private final Table table;
+    private final Menu menu;
     private final int quantity;
-    static final List<Payment> payments = PaymentRepository.payments();
 
-    public Order(final int tableNumber, final int menuNumber, final int quantity) {
-        this.tableNumber = tableNumber;
-        this.menuNumber = menuNumber;
+    public Order(final Table table, final Menu menu, final int quantity) {
+        this.table = table;
+        this.menu = menu;
         this.quantity = quantity;
     }
 
-    public void registerOrder() {
-        Table table = new Table(tableNumber);
-        final int menuPrice = MenuRepository.getPrice(menuNumber);
-        final int payment = quantity * menuPrice;
-
+    public void register() {
+        Payment payment = new Payment();
+        payment.addPayment(table, calculateTotalPrice());
     }
 
+    private int calculateTotalPrice() {
+        final int menuPrice = menu.getPrice();
+        return quantity * menuPrice;
+    }
 }
