@@ -1,11 +1,15 @@
 package view;
 
+import static view.resource.Format.ORDER_EMPTY;
+import static view.resource.Format.ORDER_FORMAT;
+import static view.resource.Format.ORDER_INDEX;
 import static view.resource.Format.TABLE_BOTTOM_LINE;
 import static view.resource.Format.TABLE_FORMAT;
 import static view.resource.Format.TABLE_TOP_LINE;
 
 import domain.Menu;
 import domain.Table;
+import dto.OrderedMenuDTO;
 import view.resource.Format;
 import view.resource.Main;
 
@@ -38,6 +42,25 @@ public class OutputView {
             System.out.println(menu);
         }
         System.out.print(System.lineSeparator());
+    }
+
+    public static void printOrder(final List<OrderedMenuDTO> orderedMenus) {
+        IOValidator.validateNotNull(orderedMenus);
+        if (orderedMenus.isEmpty()) {
+            System.out.println(ORDER_EMPTY.getValue());
+            System.out.print(System.lineSeparator());
+            return;
+        }
+        System.out.println(ORDER_INDEX.getValue());
+        printOrderedMenu(orderedMenus);
+        System.out.print(System.lineSeparator());
+    }
+
+    private static void printOrderedMenu(final List<OrderedMenuDTO> orderedMenus) {
+        for (final OrderedMenuDTO menu : orderedMenus) {
+            System.out.printf(ORDER_FORMAT.getValue(), menu.getName(), menu.getQuantity(), menu.getTotalPrice());
+            System.out.print(System.lineSeparator());
+        }
     }
 
     private static void printLine(final String line, final int count) {
