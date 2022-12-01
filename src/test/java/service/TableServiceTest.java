@@ -3,8 +3,10 @@ package service;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import domain.PayType;
 import domain.TableRepository;
 import domain.order.OrderedMenus;
+import dto.PayTypeDTO;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -65,5 +67,29 @@ class TableServiceTest {
     void getOrderByInvalidTable() {
         assertThatThrownBy(() -> tableService.getOrderByTable(100))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("결제: 결제 유형에 따라 할인 적용")
+    @Test
+    void payOrderByTable() {
+        assertThat(tableService.payOrderByTable(1, new PayTypeDTO(PayType.CARD)))
+                .isEqualTo(16_000);
+
+        tableService.addTableOrder(1, 1, 1);
+        assertThat(tableService.payOrderByTable(1, new PayTypeDTO(PayType.CASH))).isEqualTo(15_200);
+    }
+
+    @DisplayName("결제: 테이블 번호 예외 발생")
+    @Test
+    void payOrderByInvalidTable() {
+        assertThatThrownBy(() -> tableService.payOrderByTable(100, new PayTypeDTO(PayType.CARD)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("결제: 주문이 없는 테이블 번호 예외 발생")
+    @Test
+    void payOrderByEmptyOrderTable() {
+        assertThatThrownBy(() -> tableService.payOrderByTable(3, new PayTypeDTO(PayType.CARD)))
+                .isInstanceOf(IllegalStateException.class);
     }
 }

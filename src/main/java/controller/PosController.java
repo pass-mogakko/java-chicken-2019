@@ -54,8 +54,9 @@ public class PosController {
         OutputView.printTables(DTOMapper.convert(tableService.getAllTables()));
         int tableNumber = InputView.inputTableNumber();
         OutputView.printOrder(DTOMapper.convert(tableService.getOrderByTable(tableNumber)));
-        // TODO 결제 서비스
         PayTypeCommand payTypeCommand = InputView.inputPayTypeCommand(tableNumber);
+        int totalPayment = tableService.payOrderByTable(tableNumber, DTOMapper.convert(payTypeCommand));
+//        OutputView.printPayment(totalPayment);
         // TODO 예외 발생 시 pay() 다시 실행
     }
 

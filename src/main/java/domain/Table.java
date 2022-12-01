@@ -16,10 +16,7 @@ public class Table {
         order.update(menuNumber, quantity);
     }
 
-    public void payOrder() {
-        // TODO Order Empty 검증
-        // TODO 결제 로직
-        // TODO 결제 상태를 완료로 변경
+    public void completeOrder() {
         order.complete();
     }
 
@@ -33,6 +30,13 @@ public class Table {
 
     public OrderedMenus getOrderMenus() {
         return order.getMenus();
+    }
+
+    public int getTotalPrice() {
+        if (!hasOrder()) {
+            throw new IllegalStateException("결제할 주문 내역이 존재하지 않습니다.");
+        }
+        return order.getTotalPrice();
     }
 
     @Override

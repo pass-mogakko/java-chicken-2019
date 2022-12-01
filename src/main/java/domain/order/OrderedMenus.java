@@ -1,5 +1,6 @@
 package domain.order;
 
+import domain.Menu;
 import domain.MenuRepository;
 
 import java.util.Collections;
@@ -8,6 +9,7 @@ import java.util.Map;
 
 public class OrderedMenus {
 
+    // TODO Key Menu로 수정
     private final Map<Integer, Integer> quantityByMenus = new LinkedHashMap<>();
 
     public Map<Integer, Integer> getQuantityByMenus() {
@@ -23,6 +25,32 @@ public class OrderedMenus {
 
     public void clear() {
         quantityByMenus.clear();
+    }
+
+    public int getTotalPriceWithQuantityDiscount() {
+        int discountPrice = 0;
+        int totalQuantity = getTotalQuantity();
+        if (totalQuantity > 10) {
+            discountPrice = totalQuantity*(1_000);
+        }
+        return addAllMenuPrice() - discountPrice;
+    }
+
+    private int addAllMenuPrice() {
+        return quantityByMenus.keySet()
+                .stream()
+                .map(this::getMenuPrice)
+                .reduce(0, Integer::sum);
+    }
+
+    private int getMenuPrice(int number) {
+        Menu menu = MenuRepository.getMenuByNumber(number);
+        return (menu.getPrice())*(quantityByMenus.get(number));
+    }
+
+    private int getTotalQuantity() {
+        return quantityByMenus.values()
+                .stream().reduce(0, Integer::sum);
     }
 
     private void validateMenuNumber(int menuNumber) {

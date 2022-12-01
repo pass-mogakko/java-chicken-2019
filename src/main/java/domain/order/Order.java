@@ -22,6 +22,10 @@ public class Order {
         status = EMPTY;
     }
 
+    public int getTotalPrice() {
+        return menus.getTotalPriceWithQuantityDiscount();
+    }
+
     public boolean isEmpty() {
         return status == EMPTY;
     }
