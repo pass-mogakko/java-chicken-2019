@@ -28,6 +28,10 @@ public class Table {
         return number;
     }
 
+    public boolean hasOrder() {
+        return !order.isEmpty();
+    }
+
     public Map<Integer, Integer> getOrderMenus() {
         return order.getMenus();
     }

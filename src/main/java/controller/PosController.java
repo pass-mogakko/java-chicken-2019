@@ -50,12 +50,11 @@ public class PosController {
     }
 
     private void pay() {
-        // TODO 결제 서비스
-        int tableNumber = InputView.inputTableNumber();
-        // TODO 주문된 테이블 표시
         OutputView.printTables(tableService.getAllTables());
-        // TODO 주문 목록 출력
+        int tableNumber = InputView.inputTableNumber();
         OutputView.printOrder(tableService.getOrderByTable(tableNumber));
+        // TODO 결제 서비스
+        // TODO 예외 발생 시 pay() 다시 실행
     }
 
     private void exit() {

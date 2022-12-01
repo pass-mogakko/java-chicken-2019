@@ -3,13 +3,12 @@ package view;
 import static view.resource.Format.ORDER_EMPTY;
 import static view.resource.Format.ORDER_FORMAT;
 import static view.resource.Format.ORDER_INDEX;
-import static view.resource.Format.TABLE_BOTTOM_LINE;
 import static view.resource.Format.TABLE_FORMAT;
 import static view.resource.Format.TABLE_TOP_LINE;
 
 import domain.Menu;
-import domain.Table;
 import dto.OrderedMenuDTO;
+import dto.TableDTO;
 import view.resource.Format;
 import view.resource.Main;
 
@@ -26,13 +25,13 @@ public class OutputView {
         System.out.print(System.lineSeparator());
     }
 
-    public static void printTables(final List<Table> tables) {
+    public static void printTables(final List<TableDTO> tables) {
         IOValidator.validateNotNull(tables);
         System.out.println("## 테이블 목록");
         final int size = tables.size();
-        printLine(TABLE_TOP_LINE.getValue(), size);
+        printTopLine(TABLE_TOP_LINE.getValue(), size);
         printTableNumbers(tables);
-        printLine(TABLE_BOTTOM_LINE.getValue(), size);
+        printBottomLine(tables);
         System.out.print(System.lineSeparator());
     }
 
@@ -63,16 +62,23 @@ public class OutputView {
         }
     }
 
-    private static void printLine(final String line, final int count) {
+    private static void printTopLine(final String line, final int count) {
         for (int index = 0; index < count; index++) {
             System.out.print(line);
         }
         System.out.println();
     }
 
-    private static void printTableNumbers(final List<Table> tables) {
-        for (final Table table : tables) {
-            System.out.printf(TABLE_FORMAT.getValue(), table);
+    private static void printBottomLine(final List<TableDTO> tables) {
+        for (final TableDTO table : tables) {
+            System.out.print(Format.getRightTableBottomLine(table));
+        }
+        System.out.println();
+    }
+
+    private static void printTableNumbers(final List<TableDTO> tables) {
+        for (final TableDTO table : tables) {
+            System.out.printf(TABLE_FORMAT.getValue(), table.getNumber());
         }
         System.out.println();
     }
