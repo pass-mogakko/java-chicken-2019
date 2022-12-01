@@ -15,6 +15,7 @@ import view.resource.Main;
 import java.util.Arrays;
 import java.util.List;
 
+// TODO 중복 코드 리팩토링, 메시지 상수화
 public class OutputView {
 
     public static void printMain() {
@@ -52,6 +53,13 @@ public class OutputView {
         }
         System.out.println(ORDER_INDEX.getValue());
         printOrderedMenu(orderedMenus);
+        System.out.print(System.lineSeparator());
+    }
+
+    // TODO 원시값도 DTO로 캡슐화하기
+    public static void printTotalPayment(int totalPayment) {
+        System.out.println("## 최종 결제할 금액");
+        System.out.printf("%d원" + System.lineSeparator(), totalPayment);
         System.out.print(System.lineSeparator());
     }
 
