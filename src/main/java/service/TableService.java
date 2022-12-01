@@ -24,11 +24,15 @@ public class TableService {
         return table.getOrderMenus();
     }
 
-    public int payOrderByTable(int tableNumber, PayTypeDTO payTypeDTO) {
+    public int calculateTotalPayment(int tableNumber, PayTypeDTO payTypeDTO) {
         Table table = TableRepository.getTableByNumber(tableNumber);
         int totalPrice = table.getTotalPrice();
-        table.completeOrder();
         return getTotalPaymentByPayType(payTypeDTO.getPayType(),totalPrice);
+    }
+
+    public void completePayment(int tableNumber) {
+        Table table = TableRepository.getTableByNumber(tableNumber);
+        table.completeOrder();
     }
 
     private int getTotalPaymentByPayType(PayType payType, int totalPrice) {
