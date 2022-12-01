@@ -1,5 +1,6 @@
 package view;
 
+import view.resource.PayTypeCommand;
 import view.resource.Main;
 
 import java.util.Scanner;
@@ -7,6 +8,7 @@ import java.util.Scanner;
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
 
+    // TODO 메시지 상수화
     public static int inputServiceNumber() {
         System.out.println("## 원하는 기능을 선택하세요.");
         int serviceNumber = readInt();
@@ -36,6 +38,14 @@ public class InputView {
         int menuAmount = readNaturalNumber();
         System.out.print(System.lineSeparator());
         return menuAmount;
+    }
+
+    public static PayTypeCommand inputPayTypeCommand(int tableNumber) {
+        System.out.printf("## %d번 테이블의 결제를 진행합니다." + System.lineSeparator(), tableNumber);
+        System.out.println("## 신용 카드는 1번, 현금은 2번");
+        int payTypeNumber = readInt();
+        System.out.print(System.lineSeparator());
+        return PayTypeCommand.findByNumber(payTypeNumber);
     }
 
     private static int readNaturalNumber() {

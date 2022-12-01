@@ -7,6 +7,7 @@ import service.MenuService;
 import service.TableService;
 import view.InputView;
 import view.OutputView;
+import view.resource.PayTypeCommand;
 
 public class PosController {
 
@@ -54,6 +55,7 @@ public class PosController {
         int tableNumber = InputView.inputTableNumber();
         OutputView.printOrder(DTOMapper.convert(tableService.getOrderByTable(tableNumber)));
         // TODO 결제 서비스
+        PayTypeCommand payTypeCommand = InputView.inputPayTypeCommand(tableNumber);
         // TODO 예외 발생 시 pay() 다시 실행
     }
 
