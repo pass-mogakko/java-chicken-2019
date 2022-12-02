@@ -7,7 +7,7 @@ import java.util.List;
 
 public class MenuService {
 
-    private static MenuService instance = new MenuService();
+    private final static MenuService instance = new MenuService();
 
     private MenuService() {
     }
@@ -19,5 +19,8 @@ public class MenuService {
     public List<Menu> getAllMenus() {
         return MenuRepository.menus();
     }
-    // TODO Menu 조회 이 클래스 통해서 하도록 하기
+
+    public Menu getMenuByNumber(int number) {
+        return MenuRepository.findMenu(menu -> menu.getNumber() == number);
+    }
 }

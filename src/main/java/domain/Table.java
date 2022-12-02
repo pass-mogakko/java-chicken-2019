@@ -12,8 +12,8 @@ public class Table {
         this.number = number;
     }
 
-    public void updateOrder(int menuNumber, int quantity) {
-        order.update(menuNumber, quantity);
+    public void updateOrder(Menu menu, int quantity) {
+        order.update(menu, quantity);
     }
 
     public void completeOrder() {

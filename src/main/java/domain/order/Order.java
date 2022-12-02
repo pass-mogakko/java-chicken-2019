@@ -3,6 +3,8 @@ package domain.order;
 import static domain.order.OrderStatus.EMPTY;
 import static domain.order.OrderStatus.PENDING;
 
+import domain.Menu;
+
 public class Order {
 
     private final OrderedMenus menus = new OrderedMenus();
@@ -12,8 +14,8 @@ public class Order {
         return menus;
     }
 
-    public void update(int menuNumber, int quantity) {
-        menus.add(menuNumber, quantity);
+    public void update(Menu menu, int quantity) {
+        menus.add(menu, quantity);
         status = PENDING;
     }
 

@@ -23,16 +23,7 @@ public class MenuRepository {
         return Collections.unmodifiableList(menus);
     }
 
-    public static boolean hasMenu(int number) {
-        return menus.stream()
-                .anyMatch(menu -> menu.getNumber() == number);
-    }
-
-    public static Menu getMenuByNumber(int number) {
-        return findMenu(menu -> menu.getNumber() == number);
-    }
-
-    private static Menu findMenu(Predicate<Menu> condition) {
+    public static Menu findMenu(Predicate<Menu> condition) {
         return menus.stream()
                 .filter(condition)
                 .findFirst()

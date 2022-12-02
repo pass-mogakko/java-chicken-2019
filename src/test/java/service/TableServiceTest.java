@@ -3,6 +3,8 @@ package service;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import domain.Category;
+import domain.Menu;
 import domain.PayType;
 import domain.TableRepository;
 import domain.order.OrderedMenus;
@@ -17,10 +19,12 @@ class TableServiceTest {
 
     private static final TableService tableService = TableService.getInstance();
 
+    private static final Menu menuForNo1 = new Menu(1, "후라이드", Category.CHICKEN, 16_000);
+
     @BeforeAll
     static void initializeTableOrder() {
         TableRepository.tables()
-                .get(0).updateOrder(1, 1);
+                .get(0).updateOrder(menuForNo1, 1);
     }
 
     @DisplayName("주문 등록: 테이블 번호 예외 발생")
@@ -30,21 +34,27 @@ class TableServiceTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("주문 등록: 메뉴 번호 예외 발생")
+    @Test
+    void updateOrderWithInvalidMenu() {
+        assertThatThrownBy(() -> tableService.addTableOrder(1, 100, 1));
+    }
+
     @DisplayName("주문 조회: 테이블 번호로 조회")
     @Test
     void getOrderByTable() {
         OrderedMenus orderedMenus = tableService.getOrderByTable(1);
-        Map<Integer, Integer> quantityByMenus = orderedMenus.getQuantityByMenus();
+        Map<Menu, Integer> quantityByMenus = orderedMenus.getQuantityByMenus();
 
         assertThat(quantityByMenus).hasSize(1);
-        assertThat(quantityByMenus.get(1)).isEqualTo(1);
+        assertThat(quantityByMenus.get(menuForNo1)).isEqualTo(1);
     }
 
     @DisplayName("주문 조회: 주문이 없는 테이블 번호로 조회")
     @Test
     void getEmptyOrderByTable() {
         OrderedMenus orderedMenus = tableService.getOrderByTable(3);
-        Map<Integer, Integer> quantityByMenus = orderedMenus.getQuantityByMenus();
+        Map<Menu, Integer> quantityByMenus = orderedMenus.getQuantityByMenus();
 
         assertThat(quantityByMenus).isEmpty();
     }
@@ -61,6 +71,7 @@ class TableServiceTest {
     void payOrderByTable() {
         assertThat(tableService.calculateTotalPayment(1, new PayTypeDTO(PayType.CARD)))
                 .isEqualTo(16_000);
+        tableService.completePayment(1);
 
         tableService.addTableOrder(1, 1, 1);
         assertThat(tableService.calculateTotalPayment(1, new PayTypeDTO(PayType.CASH))).isEqualTo(15_200);

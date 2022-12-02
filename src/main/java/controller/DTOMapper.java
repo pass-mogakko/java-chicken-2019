@@ -1,7 +1,6 @@
 package controller;
 
 import domain.Menu;
-import domain.MenuRepository;
 import domain.PayType;
 import domain.Table;
 import domain.order.OrderedMenus;
@@ -24,15 +23,14 @@ public class DTOMapper {
     }
 
     public static List<OrderedMenuDTO> convert(OrderedMenus menus) {
-        Map<Integer, Integer> quantityByMenus = menus.getQuantityByMenus();
+        Map<Menu, Integer> quantityByMenus = menus.getQuantityByMenus();
         return quantityByMenus.keySet()
                 .stream()
-                .map(number -> createOrderedMenuDTO(number, quantityByMenus.get(number)))
+                .map(menu -> createOrderedMenuDTO(menu, quantityByMenus.get(menu)))
                 .collect(Collectors.toList());
     }
 
-    private static OrderedMenuDTO createOrderedMenuDTO(int number, int quantity) {
-        Menu menu = MenuRepository.getMenuByNumber(number);
+    private static OrderedMenuDTO createOrderedMenuDTO(Menu menu, int quantity) {
         return new OrderedMenuDTO(menu.getName(), quantity, (menu.getPrice())*quantity);
     }
 
