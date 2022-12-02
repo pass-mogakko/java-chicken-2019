@@ -13,6 +13,22 @@ public class Menu {
         this.price = price;
     }
 
+    public int getPrice() {
+        return price;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
     @Override
     public String toString() {
         return category + " " + number + " - " + name + " : " + price + "원";

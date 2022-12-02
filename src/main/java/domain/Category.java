@@ -10,6 +10,10 @@ public enum Category {
         this.name = name;
     }
 
+    public static boolean isChicken(final Category category) {
+        return category == CHICKEN;
+    }
+
     @Override
     public String toString() {
         return "[" + name + "]";
