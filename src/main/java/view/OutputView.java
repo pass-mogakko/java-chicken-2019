@@ -15,6 +15,7 @@ public class OutputView {
     private static final String BOTTOM_LINE = "└ ─ ┘";
 
     public static void printMainView() {
+        System.out.print(System.lineSeparator());
         System.out.println("### 메인화면");
         System.out.println(ORDER_COMMAND);
         System.out.println(PAYMENT_COMMAND);
@@ -48,5 +49,24 @@ public class OutputView {
             System.out.printf(TABLE_FORMAT, table);
         }
         System.out.println();
+    }
+
+    public static void printOrderHistoryMessage() {
+        System.out.println("## 주문 내역");
+        System.out.println("메뉴 수량 금액");
+    }
+
+    public static void printOrderHistory(final String menuName, final int quantity, final int price) {
+        System.out.println(menuName + " " + quantity + " " + price);
+    }
+
+    public static void printTotalPrice(final double totalPayment) {
+        System.out.println("## 최종 결제할 금액");
+        System.out.printf("%.0f원", totalPayment);
+        System.out.print(System.lineSeparator());
+    }
+
+    public static void printExitMessage() {
+        System.out.println("프로그램을 종료합니다.");
     }
 }

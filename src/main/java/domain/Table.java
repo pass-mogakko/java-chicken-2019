@@ -4,26 +4,31 @@ import java.util.List;
 
 public class Table {
     private final int number;
-    private static final List<Table> tables = TableRepository.tables();
+    private OrderedMenu orderedMenu;
 
     public Table(final int number) {
         this.number = number;
+        this.orderedMenu = new OrderedMenu();
     }
 
-    public int readTableNumber(){
-
-        validateTableNumber();
-        return readTableNumber();
-    }
-
-    private void validateTableNumber(){
-        for(Table table : tables){
-
-        }
-    }
-
-    public int getTableNumber(){
+    public int getNumber() {
         return number;
+    }
+
+    public boolean isSame(final int tableNumber) {
+        return this.number == tableNumber;
+    }
+
+    public void addOrder(final Order order) {
+        orderedMenu.register(order);
+    }
+
+    public void initOrder() {
+        orderedMenu.initOrderedMenu();
+    }
+
+    public List<Order> getOrder() {
+        return orderedMenu.getOrder();
     }
 
     @Override

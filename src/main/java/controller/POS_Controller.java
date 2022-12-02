@@ -7,15 +7,21 @@ import view.OutputView;
 import static domain.Command.readInputCommand;
 
 public class POS_Controller {
+    final OrderController orderController = new OrderController();
+    final PaymentController paymentController = new PaymentController();
+
     public void run() {
         int command = readCommand();
-        while (!Command.isExit(command)) {
-            if (Command.isOrderRegistration(command)) {
-                //주문 저장 컨트롤러
-            }
-            if (Command.isPayment(command)) {
-                // 결제 컨트롤러
-            }
+        if (Command.isOrderRegistration(command)) {
+            orderController.run();
+            run();
+        }
+        if (Command.isPayment(command)) {
+            paymentController.run();
+            run();
+        }
+        if (Command.isExit(command)) {
+            OutputView.printExitMessage();
         }
     }
 

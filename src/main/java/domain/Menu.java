@@ -13,16 +13,20 @@ public class Menu {
         this.price = price;
     }
 
-    private void validateMenu(){
-
-    }
-
-    public int getPrice(){
+    public int getPrice() {
         return price;
     }
 
-    public int getNumber(){
+    public int getNumber() {
         return number;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Category getCategory() {
+        return category;
     }
 
     @Override

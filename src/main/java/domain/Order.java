@@ -1,23 +1,36 @@
 package domain;
 
 public class Order {
-    private final Table table;
     private final Menu menu;
     private final int quantity;
 
-    public Order(final Table table, final Menu menu, final int quantity) {
-        this.table = table;
+    public Order(final Menu menu, final int quantity) {
         this.menu = menu;
         this.quantity = quantity;
     }
 
-    public void register() {
-        Payment payment = new Payment();
-        payment.addPayment(table, calculateTotalPrice());
+    public Menu getMenu() {
+        return menu;
     }
 
-    private int calculateTotalPrice() {
-        final int menuPrice = menu.getPrice();
-        return quantity * menuPrice;
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public String getMenuName() {
+        return menu.getName();
+    }
+
+    public int getAmount() {
+        return menu.getPrice() * quantity;
+    }
+
+    public Category getMenuCategory() {
+        return menu.getCategory();
+    }
+
+    @Override
+    public String toString() {
+        return menu + " " + quantity;
     }
 }

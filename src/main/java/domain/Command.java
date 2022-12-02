@@ -29,11 +29,12 @@ public enum Command {
     public int getCommand() {
         return this.command;
     }
-    public static boolean isOrderRegistration(final int command){
+
+    public static boolean isOrderRegistration(final int command) {
         return command == ORDER_REGISTRATION.getCommand();
     }
 
-    public static boolean isPayment(final int command){
+    public static boolean isPayment(final int command) {
         return command == PAYMENT.getCommand();
     }
 
