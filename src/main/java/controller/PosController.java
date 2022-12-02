@@ -37,7 +37,7 @@ public class PosController {
             orderController.receiveOrder(tableNumber);
         }
         if (mainCommand == PAY) {
-            payController.pay(tableNumber);
+            payController.receivePaymentRequest(tableNumber);
         }
     }
 

@@ -14,6 +14,10 @@ public class OrderedMenus {
         return Collections.unmodifiableMap(quantityByMenus);
     }
 
+    public boolean isEmpty() {
+        return quantityByMenus.isEmpty();
+    }
+
     public void add(Menu menu, int quantity) {
         int totalQuantity = quantityByMenus.getOrDefault(menu, 0) + quantity;
         System.out.println(totalQuantity);
