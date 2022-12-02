@@ -1,6 +1,7 @@
 package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import domain.order.OrderedMenus;
 import org.junit.jupiter.api.DisplayName;
@@ -23,7 +24,23 @@ class TableTest {
                 .hasSize(2);
     }
 
-    // TODO 주문 등록 관련 테스트 TableServiceTest에서 이 클래스로 이동
+    @DisplayName("주문 등록: 메뉴 번호 예외 발생")
+    @Test
+    void updateOrderWithInvalidMenu() {
+        Table table = new Table(1);
+
+        assertThatThrownBy(() -> table.updateOrder(100, 1))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("주문 등록: 주문 수량 예외 발생")
+    @Test
+    void updateOrderWithInvalidAmount() {
+        Table table = new Table(1);
+
+        assertThatThrownBy(() -> table.updateOrder(1, 99))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
     @DisplayName("테이블 주문 내역 초기화")
     @Test

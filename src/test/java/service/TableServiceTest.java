@@ -30,19 +30,6 @@ class TableServiceTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("주문 등록: 메뉴 번호 예외 발생")
-    @Test
-    void addTableOrderWithInvalidMenu() {
-        assertThatThrownBy(() -> tableService.addTableOrder(1, 100, 1))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-    @DisplayName("주문 등록: 주문 수량 예외 발생")
-    @Test
-    void addTableOrderWithInvalidAmount() {
-        assertThatThrownBy(() -> tableService.addTableOrder(1, 1, 99))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
     @DisplayName("주문 조회: 테이블 번호로 조회")
     @Test
     void getOrderByTable() {
