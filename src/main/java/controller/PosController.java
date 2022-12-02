@@ -17,6 +17,14 @@ public class PosController {
     private final PayController payController = new PayController(OrderService.getInstance(), PayService.getInstance());
 
     public void run() {
+        try {
+            runPos();
+        } catch (Exception exception) {
+            OutputView.printFunctionErrorMessage(exception.getMessage());
+        }
+    }
+
+    private void runPos() {
         PosStatus status = PosStatus.RUN;
         while (status == PosStatus.RUN) {
             status = doSelectedService();

@@ -1,5 +1,6 @@
 package view;
 
+import static view.resource.Format.FUNCTION_ERROR_PREFIX;
 import static view.resource.Format.ORDER_EMPTY;
 import static view.resource.Format.ORDER_FORMAT;
 import static view.resource.Format.ORDER_INDEX;
@@ -75,6 +76,11 @@ public class OutputView {
 
     public static void printUserErrorMessage(String message) {
         System.out.printf(USER_ERROR_PREFIX.getValue(), message);
+        System.out.print(System.lineSeparator());
+    }
+
+    public static void printFunctionErrorMessage(String message) {
+        System.out.printf(FUNCTION_ERROR_PREFIX.getValue(), message);
         System.out.print(System.lineSeparator());
     }
 
