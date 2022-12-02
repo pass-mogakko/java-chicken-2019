@@ -1,24 +1,22 @@
 package controller;
 
 import service.MenuService;
-import service.TableService;
+import service.OrderService;
 import view.InputView;
 import view.OutputView;
 
 public class OrderController {
 
-    private final TableService tableService;
-    private final MenuService menuService;
+    private final OrderService orderService;
 
-    public OrderController(TableService tableService, MenuService menuService) {
-        this.tableService = tableService;
-        this.menuService = menuService;
+    public OrderController(OrderService orderService) {
+        this.orderService = orderService;
     }
 
     public void receiveOrder(int tableNumber) {
-        OutputView.printMenus(menuService.getAllMenus());
+        OutputView.printMenus(MenuService.getAllMenus());
         int menuNumber = InputView.inputMenuNumber();
         int menuAmount = InputView.inputMenuQuantity();
-        tableService.addTableOrder(tableNumber, menuNumber, menuAmount);
+        orderService.addTableOrder(tableNumber, menuNumber, menuAmount);
     }
 }

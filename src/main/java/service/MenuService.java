@@ -7,20 +7,11 @@ import java.util.List;
 
 public class MenuService {
 
-    private final static MenuService instance = new MenuService();
-
-    private MenuService() {
-    }
-
-    public static MenuService getInstance() {
-        return instance;
-    }
-
-    public List<Menu> getAllMenus() {
+    public static List<Menu> getAllMenus() {
         return MenuRepository.menus();
     }
 
-    public Menu getMenuByNumber(int number) {
+    public static Menu getMenuByNumber(int number) {
         return MenuRepository.findMenu(menu -> menu.getNumber() == number);
     }
 }

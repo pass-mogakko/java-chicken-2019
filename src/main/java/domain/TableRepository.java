@@ -21,11 +21,7 @@ public class TableRepository {
         return Collections.unmodifiableList(tables);
     }
 
-    public static Table getTableByNumber(int number) {
-        return findTable(table -> table.getNumber() == number);
-    }
-
-    private static Table findTable(Predicate<Table> condition) {
+    public static Table findTable(Predicate<Table> condition) {
         return tables.stream()
                 .filter(condition)
                 .findFirst()
