@@ -1,10 +1,42 @@
 package domain;
 
-public class Table {
-    private final int number;
+import domain.order.Order;
+import domain.order.OrderedMenus;
 
-    public Table(final int number) {
+public class Table {
+
+    private final int number;
+    private final Order order = new Order();
+
+    public Table(int number) {
         this.number = number;
+    }
+
+    public void updateOrder(Menu menu, int quantity) {
+        order.update(menu, quantity);
+    }
+
+    public void completeOrder() {
+        order.complete();
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public boolean hasOrder() {
+        return !order.isEmpty();
+    }
+
+    public OrderedMenus getOrderMenus() {
+        return order.getMenus();
+    }
+
+    public int getTotalPrice() {
+        if (!hasOrder()) {
+            throw new IllegalStateException("결제할 주문 내역이 존재하지 않습니다.");
+        }
+        return order.getTotalPrice();
     }
 
     @Override

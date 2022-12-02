@@ -3,6 +3,7 @@ package domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class TableRepository {
     private static final List<Table> tables = new ArrayList<>();
@@ -18,5 +19,12 @@ public class TableRepository {
 
     public static List<Table> tables() {
         return Collections.unmodifiableList(tables);
+    }
+
+    public static Table findTable(Predicate<Table> condition) {
+        return tables.stream()
+                .filter(condition)
+                .findFirst()
+                .orElseThrow(() -> {throw new IllegalArgumentException("해당 테이블이 존재하지 않습니다.");});
     }
 }
