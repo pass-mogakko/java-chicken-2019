@@ -1,7 +1,7 @@
 package view;
 
 import view.resource.PayTypeCommand;
-import view.resource.Main;
+import view.resource.MainCommand;
 
 import java.util.Scanner;
 
@@ -9,14 +9,11 @@ public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
 
     // TODO 메시지 상수화
-    public static int inputServiceNumber() {
+    public static MainCommand inputServiceNumber() {
         System.out.println("## 원하는 기능을 선택하세요.");
         int serviceNumber = readInt();
         System.out.print(System.lineSeparator());
-        if (!Main.hasMatchingNumber(serviceNumber)) {
-            throw new IllegalArgumentException("잘못된 번호를 입력했습니다.");
-        }
-        return serviceNumber;
+        return MainCommand.findByNumber(serviceNumber);
     }
 
     public static int inputTableNumber() {

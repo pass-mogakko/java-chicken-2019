@@ -15,7 +15,7 @@ import java.util.Map;
 
 class TableServiceTest {
 
-    private static final TableService tableService = new TableService();
+    private static final TableService tableService = TableService.getInstance();
 
     @BeforeAll
     static void initializeTableOrder() {

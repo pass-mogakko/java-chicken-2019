@@ -2,7 +2,7 @@ package view.resource;
 
 import java.util.Arrays;
 
-public enum Main {
+public enum MainCommand {
 
     ORDER(1, "주문등록"),
     PAY(2, "결제하기"),
@@ -12,7 +12,7 @@ public enum Main {
     private final int number;
     private final String name;
 
-    Main(int number, String name) {
+    MainCommand(int number, String name) {
         this.number = number;
         this.name = name;
     }
@@ -25,9 +25,10 @@ public enum Main {
         return name;
     }
 
-    // TODO 결제유형 선택 시에도 같은 방식 이용
-    public static boolean hasMatchingNumber(int command) {
+    public static MainCommand findByNumber(int number) {
         return Arrays.stream(values())
-                .anyMatch(value -> command == value.number);
+                .filter(value -> number == value.number)
+                .findFirst()
+                .orElseThrow(() -> {throw new IllegalArgumentException("지정된 기능 입력값이 아닙니다.");});
     }
 }

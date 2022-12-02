@@ -1,5 +1,6 @@
 package view;
 
+import static view.resource.Format.EXIT;
 import static view.resource.Format.ORDER_EMPTY;
 import static view.resource.Format.ORDER_FORMAT;
 import static view.resource.Format.ORDER_INDEX;
@@ -10,7 +11,7 @@ import domain.Menu;
 import dto.OrderedMenuDTO;
 import dto.TableDTO;
 import view.resource.Format;
-import view.resource.Main;
+import view.resource.MainCommand;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,7 +21,7 @@ public class OutputView {
 
     public static void printMain() {
         System.out.println("## 메인화면");
-        Arrays.stream(Main.values())
+        Arrays.stream(MainCommand.values())
                 .forEach(service -> System.out.printf(Format.MAIN_SERVICE.getValue(),
                         service.getNumber(), service.getName()));
         System.out.print(System.lineSeparator());
@@ -61,6 +62,10 @@ public class OutputView {
         System.out.println("## 최종 결제할 금액");
         System.out.printf("%d원" + System.lineSeparator(), totalPayment);
         System.out.print(System.lineSeparator());
+    }
+
+    public static void printExitMessage() {
+        System.out.println(EXIT.getValue());
     }
 
     private static void printOrderedMenu(final List<OrderedMenuDTO> orderedMenus) {

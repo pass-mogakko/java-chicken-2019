@@ -1,67 +1,52 @@
 package controller;
 
-import static view.resource.Main.ORDER;
-import static view.resource.Main.PAY;
+import static view.resource.MainCommand.EXIT;
+import static view.resource.MainCommand.ORDER;
+import static view.resource.MainCommand.PAY;
 
 import service.MenuService;
 import service.TableService;
 import view.InputView;
 import view.OutputView;
-import view.resource.PayTypeCommand;
+import view.resource.MainCommand;
 
 public class PosController {
 
-    private final TableService tableService = new TableService();
-    private final MenuService menuService = new MenuService();
+    private final TableService tableService = TableService.getInstance();
+    private final MenuService menuService = MenuService.getInstance();
+    private final OrderController orderController = new OrderController(tableService, menuService);
+    private final PayController payController = new PayController(tableService);
 
     public void run() {
-        while (true) {
-            showServices();
-            int selectNumber = InputView.inputServiceNumber();
-            doSelectedService(selectNumber);
-            if (selectNumber == 3) {
-                exit();
-                return;
-            }
+        MainCommand mainCommand = selectService();
+        if (mainCommand != EXIT) {
+            doSelectedService(mainCommand);
+            run();
         }
+        exit();
     }
 
-    private void showServices() {
+    private MainCommand selectService() {
         OutputView.printMain();
+        return InputView.inputServiceNumber();
     }
 
-    private void doSelectedService(int selectNumber) {
-        if (selectNumber == ORDER.getNumber()) {
-            order();
+    private void doSelectedService(MainCommand mainCommand) {
+        int tableNumber = selectTable();
+        if (mainCommand == ORDER) {
+            orderController.receiveOrder(tableNumber);
         }
-        if (selectNumber == PAY.getNumber()) {
-            pay();
+        if (mainCommand == PAY) {
+            payController.pay(tableNumber);
         }
-        // TODO 예외 발생
     }
 
-    private void order() {
+    private int selectTable() {
         OutputView.printTables(DTOMapper.convert(tableService.getAllTables()));
-        int tableNumber = InputView.inputTableNumber();
-        OutputView.printMenus(menuService.getAllMenus());
-        int menuNumber = InputView.inputMenuNumber();
-        int menuAmount = InputView.inputMenuAmount();
-        tableService.addTableOrder(tableNumber, menuNumber, menuAmount);
-        // TODO 예외 발생 시 order() 다시 실행
-    }
-
-    private void pay() {
-        OutputView.printTables(DTOMapper.convert(tableService.getAllTables()));
-        int tableNumber = InputView.inputTableNumber();
-        OutputView.printOrder(DTOMapper.convert(tableService.getOrderByTable(tableNumber)));
-        PayTypeCommand payTypeCommand = InputView.inputPayTypeCommand(tableNumber);
-        int totalPayment = tableService.calculateTotalPayment(tableNumber, DTOMapper.convert(payTypeCommand));
-        OutputView.printTotalPayment(totalPayment);
-        tableService.completePayment(tableNumber);
-        // TODO 예외 발생 시 pay() 다시 실행
+        return InputView.inputTableNumber();
     }
 
     private void exit() {
-        // TODO 프로그램 종료 메시지 출력
+        OutputView.printExitMessage();
     }
 }

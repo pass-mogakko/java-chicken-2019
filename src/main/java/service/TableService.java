@@ -10,6 +10,14 @@ import java.util.List;
 
 public class TableService {
 
+    private static TableService instance = new TableService();
+
+    private TableService() { }
+
+    public static TableService getInstance() {
+        return instance;
+    }
+
     public List<Table> getAllTables() {
         return TableRepository.tables();
     }

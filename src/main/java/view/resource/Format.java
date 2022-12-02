@@ -12,7 +12,9 @@ public enum Format {
 
     ORDER_EMPTY("주문 내역이 존재하지 않습니다."),
     ORDER_INDEX("메뉴 수량 금액"),
-    ORDER_FORMAT("%s %d %d")
+    ORDER_FORMAT("%s %d %d"),
+
+    EXIT("치킨집 포스기를 종료합니다.")
     ;
 
     private final String value;
