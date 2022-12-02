@@ -17,12 +17,15 @@ public class PosController {
     private final PayController payController = new PayController(OrderService.getInstance(), PayService.getInstance());
 
     public void run() {
-        MainCommand mainCommand = selectService();
-        if (mainCommand != EXIT) {
-            doSelectedService(mainCommand);
-            run();
+        PosStatus status = PosStatus.RUN;
+        while (status == PosStatus.RUN) {
+            status = doSelectedService();
         }
-        exit();
+    }
+
+    private PosStatus doSelectedService() {
+        MainCommand mainCommand = InputErrorHandler.runUntilGetLegalArguments(this::selectService);
+        return InputErrorHandler.runUntilGetLegalArguments(this::doServiceByCommand, mainCommand);
     }
 
     private MainCommand selectService() {
@@ -30,7 +33,11 @@ public class PosController {
         return InputView.inputServiceNumber();
     }
 
-    private void doSelectedService(MainCommand mainCommand) {
+    private PosStatus doServiceByCommand(MainCommand mainCommand) {
+        if (mainCommand == EXIT) {
+            exit();
+            return PosStatus.STOP;
+        }
         int tableNumber = selectTable();
         if (mainCommand == ORDER) {
             orderController.receiveOrder(tableNumber);
@@ -38,6 +45,7 @@ public class PosController {
         if (mainCommand == PAY) {
             payController.receivePaymentRequest(tableNumber);
         }
+        return PosStatus.RUN;
     }
 
     private int selectTable() {

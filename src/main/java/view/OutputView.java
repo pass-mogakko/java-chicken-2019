@@ -6,6 +6,7 @@ import static view.resource.Format.ORDER_INDEX;
 import static view.resource.Format.TABLE_FORMAT;
 import static view.resource.Format.TABLE_TOP_LINE;
 import static view.resource.Format.TOTAL_PAYMENT;
+import static view.resource.Format.USER_ERROR_PREFIX;
 import static view.resource.Message.EXIT;
 import static view.resource.Message.HEADER_MAIN;
 import static view.resource.Message.HEADER_TABLES;
@@ -70,6 +71,11 @@ public class OutputView {
 
     public static void printExitMessage() {
         System.out.println(EXIT.getValue());
+    }
+
+    public static void printUserErrorMessage(String message) {
+        System.out.printf(USER_ERROR_PREFIX.getValue(), message);
+        System.out.print(System.lineSeparator());
     }
 
     private static void printOrderedMenu(final List<OrderedMenuDTO> orderedMenus) {

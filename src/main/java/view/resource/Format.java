@@ -14,7 +14,10 @@ public enum Format {
     ORDER_INDEX("메뉴 수량 금액"),
     ORDER_FORMAT("%s %d %d"),
 
-    TOTAL_PAYMENT("%d원" + System.lineSeparator())
+    TOTAL_PAYMENT("%d원" + System.lineSeparator()),
+
+    USER_ERROR_PREFIX("[입력 오류] %s" + System.lineSeparator()),
+    FUNCTION_ERROR_PREFIX("[기능 오류] %s" + System.lineSeparator())
     ;
 
     private final String value;
