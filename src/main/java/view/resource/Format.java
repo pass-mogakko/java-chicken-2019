@@ -14,7 +14,7 @@ public enum Format {
     ORDER_INDEX("메뉴 수량 금액"),
     ORDER_FORMAT("%s %d %d"),
 
-    EXIT("치킨집 포스기를 종료합니다.")
+    TOTAL_PAYMENT("%d원" + System.lineSeparator())
     ;
 
     private final String value;

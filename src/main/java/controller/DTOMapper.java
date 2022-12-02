@@ -20,11 +20,7 @@ public class DTOMapper {
         if (payCommand == PayTypeCommand.CARD) {
             return new PayTypeDTO(PayType.CARD);
         }
-        if (payCommand == PayTypeCommand.CASH) {
-            return new PayTypeDTO(PayType.CASH);
-        }
-        // TODO 검증로직 검토
-        throw new IllegalArgumentException("");
+        return new PayTypeDTO(PayType.CASH);
     }
 
     public static List<OrderedMenuDTO> convert(OrderedMenus menus) {

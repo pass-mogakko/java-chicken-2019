@@ -18,7 +18,7 @@ public class OrderController {
     public void receiveOrder(int tableNumber) {
         OutputView.printMenus(menuService.getAllMenus());
         int menuNumber = InputView.inputMenuNumber();
-        int menuAmount = InputView.inputMenuAmount();
+        int menuAmount = InputView.inputMenuQuantity();
         tableService.addTableOrder(tableNumber, menuNumber, menuAmount);
     }
 }
